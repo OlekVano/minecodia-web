@@ -8,7 +8,12 @@
   src: url('../public/fonts/minecraft.woff') format('woff');
 }
   
-  @font-face {
+@font-face {
   font-family: 'mojangStudios';
   src: url('../public//fonts/mojang-studios.ttf');
+}
+
+@font-face {
+  font-family: 'round';
+  src: url('../public/fonts/round.otf');
 }
