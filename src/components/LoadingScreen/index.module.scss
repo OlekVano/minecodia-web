@@ -1,0 +1,14 @@
+// LoadingScreen
+
+.loadingBar {
+  animation: loadingBar ease-in-out 8s;
+}
+
+@keyframes loadingBar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
