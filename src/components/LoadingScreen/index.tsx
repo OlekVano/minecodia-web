@@ -31,7 +31,7 @@ export default function LoadingScreen({ loading, setLoading }: { loading: boolea
 
 
   return (
-    <div className={`bg-[#ef303f] z-50 absolute top-0 left-0 w-screen h-screen duration-1000 select-none ${!loading ? 'opacity-0 pointer-events-none' : ''}`}>
+    <div className={`bg-[#ef303f] z-50 absolute top-0 left-0 w-full h-screen duration-1000 select-none ${!loading ? 'opacity-0 pointer-events-none' : ''}`}>
       <div className='w-full h-full flex flex-col justify-center items-center text-white '>
         <div className='text-7xl font-["mojangStudios"] uppercase'>web dev</div>
         <div className='text-2xl font-["round"] tracking-[10px] uppercase font-black'>studios</div>
