@@ -5,6 +5,8 @@ import styles from './index.module.scss'
 import { useEffect, useState } from 'react'
 import { sleep } from '../../utils'
 
+import ASScroll from '@ashthornton/asscroll'
+
 const statuses: string[] = [
   'Getting compilation errors',
   'Pasting the error message in Google search',
@@ -26,6 +28,9 @@ export default function LoadingScreen({ loading, setLoading }: { loading: boolea
         }
       }
       setLoading(false)
+      
+      const asscroll = new ASScroll()
+      asscroll.enable()
 
       new Audio('sounds/pop.mp3').play()
       await sleep(1000)
