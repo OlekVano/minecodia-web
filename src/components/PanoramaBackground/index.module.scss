@@ -1,0 +1,13 @@
+.main {
+  animation: horizontalScrolling infinite 40s linear;
+  z-index: -99999;
+}
+
+@keyframes horizontalScrolling {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
