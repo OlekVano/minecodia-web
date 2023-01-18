@@ -1,0 +1,13 @@
+.main {
+  animation: varySize alternate infinite ease-in-out 2s;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+@keyframes varySize {
+  from {
+    scale: 0.8
+  }
+  to {
+    scale: 1
+  }
+}
