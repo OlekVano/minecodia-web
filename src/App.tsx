@@ -51,7 +51,7 @@ function App() {
         {/* All content in the following div */}
         <div>
           <Routes>
-            <Route index element={<Home />} />
+            <Route index element={<Home loading={loading} />} />
             <Route path='/sign-in' element={<SignIn loading={loading} />} />
           </Routes>
         </div>
