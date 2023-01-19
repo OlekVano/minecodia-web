@@ -50,7 +50,6 @@ export default function SignIn({ loading }: any) {
           <>
             <div className='w-full text-center  text-white' style={{wordSpacing: '3.5px'}}>Signing in allows posting, commenting and having a profile...</div>
             <Button text='Sign In' func={signIn} />
-            <Button text='Guest Mode' />
           </>
         }
       </div>
