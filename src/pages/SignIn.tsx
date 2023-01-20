@@ -41,7 +41,7 @@ export default function SignIn({ loading }: any) {
       loading ? <></>
       : 
       <div className='w-screen h-screen bg-[url("../public/images/dirt-bg.webp")] font-["minecraft"] bg-cover bg-center grid place-items-center'>
-      <div className={`gap-10 flex duration-1000 delay-1000 flex-wrap justify-center ${loading ? 'opacity-0' : ''}`}>
+      <div className={`gap-10 flex transition-duration-opacity-1 delay-1000 flex-wrap justify-center ${loading ? 'opacity-0' : ''}`}>
         {
           user ?
           <>
