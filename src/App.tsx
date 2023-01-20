@@ -13,17 +13,12 @@ function App() {
   }, [])
 
   return (
-    <div className='App w-full'>
+    <div className='App w-full overflow-hidden max-h-screen'>
       <LoadingScreen loading={loading} setLoading={setLoading} />
-      <div asscroll-container='true' className='absolute left-0 top-0 max-h-full overflow-y-hidden'>
-        {/* All content in the following div */}
-        <div>
-          <Routes>
-            <Route index element={<Home loading={loading} />} />
-            <Route path='/sign-in' element={<SignIn loading={loading} />} />
-          </Routes>
-        </div>
-      </div>
+      <Routes>
+        <Route index element={<Home loading={loading} />} />
+        <Route path='/sign-in' element={<SignIn loading={loading} />} />
+      </Routes>
     </div>
   );
 }
