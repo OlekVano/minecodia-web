@@ -37,11 +37,11 @@ export default function LoadingScreen({ loading, setLoading }: { loading: boolea
   return (
     <div className={`bg-[#ef303f] z-50 absolute top-0 left-0 w-full h-screen duration-1000 select-none ${!loading ? 'opacity-0 pointer-events-none' : ''}`}>
       <div className='w-full h-full flex flex-col justify-center items-center text-white '>
-        <div className='text-7xl font-["mojangStudios"] uppercase'>web dev</div>
-        <div className='text-2xl font-["round"] tracking-[10px] uppercase font-black'>studios</div>
-        <div className='text-xs mt-10 font-["round"]'>{status}</div>
+        <div className='text-7xl font-["mojangStudios"] uppercase text-center'>web dev</div>
+        <div className='text-2xl font-["round"] tracking-[10px] uppercase font-black text-center'>studios</div>
+        <div className='text-xs mt-10 font-["round"] text-center'>{status}</div>
         <div className='h-4 w-1/2 mt-2'>
-          <div className={`${styles.loadingBar} bg-white h-full`}></div>
+          <div className={`${styles.loadingBar} bg-white h-full text-center`}></div>
         </div>
       </div>
     </div>
