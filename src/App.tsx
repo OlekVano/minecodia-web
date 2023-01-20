@@ -4,6 +4,7 @@ import LoadingScreen from './components/LoadingScreen'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
+import Profile from './pages/Profile'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route index element={<Home loading={loading} />} />
         <Route path='/sign-in' element={<SignIn loading={loading} />} />
+        <Route path='/profile' element={<Profile loading={loading} />} />
       </Routes>
     </div>
   );
