@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { Button } from '../components/Button'
 import PanoramaBackground from '../components/PanoramaBackground'
 import SplashText from '../components/SplashText'
-
+import { useNavigate } from 'react-router-dom'
 import { getRandArrItem } from '../utils'
 
 export default function Home({ loading }: {loading: boolean}) {
+  const navigate = useNavigate()
+
   const splashTexts = [
     '99% bug free',
     'Minecraft???',
@@ -33,7 +35,7 @@ export default function Home({ loading }: {loading: boolean}) {
           The first social media platform designed for Minecraft fans!
         </h1>
         <div className='flex justify-center gap-x-16 gap-y-8 w-full max-w-2xl flex-wrap'>
-          <Button text='Try it' />
+          <Button text='Try it' func={() => navigate('/sign-in')} />
           <Button text='Learn more' />
         </div>
       </div>
