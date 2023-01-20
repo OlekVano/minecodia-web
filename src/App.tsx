@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import LoadingScreen from './components/LoadingScreen'
 
 import { Routes, Route } from 'react-router-dom'
@@ -7,7 +6,6 @@ import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 
 function App() {
-  const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
