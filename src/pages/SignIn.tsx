@@ -3,8 +3,11 @@ import { Button } from "../components/Button";
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '../firebase-setup'
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn({ loading }: any) {
+  const navigate = useNavigate()
+
   const [user] = useAuthState(auth)
 
   function signIn() {
@@ -43,7 +46,7 @@ export default function SignIn({ loading }: any) {
           user ?
           <>
             <div className='w-full text-center  text-white' style={{wordSpacing: '3.5px'}}>You are signed in</div>
-            <Button text='Explore' />
+            <Button text='Explore' func={() => navigate('/explore')} />
             <Button text='Sign Out' func={() => signOut(auth)} />
           </>
           :
