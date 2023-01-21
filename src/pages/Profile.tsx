@@ -1,8 +1,3 @@
-import { useEffect, useRef } from 'react'
-import { NameTagObject, SkinViewer } from 'skinview3d'
-import { IdleAnimation } from 'skinview3d/libs/animation'
-
-import ASScroll from '@ashthornton/asscroll'
 import SmoothScroll from '../components/SmoothScroll'
 import SkinCanvas from '../components/SkinCanvas'
 
