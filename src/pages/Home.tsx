@@ -33,10 +33,9 @@ export default function Home({ loading }: {loading: boolean}) {
   return (
     <div>
       <PanoramaBackground bgImage='images/panorama-bg.jpg' />
-      <div asscroll-container='true' className='absolute top-0 left-0'>
-        <div>
-        <div className={`flex flex-col justify-evenly items-center select-none min-h-screen ${loading ? 'opacity-0 hidden': ''}`}>
-          <div className='w-full sm:w-2/3 lg:w-1/2 h-full relative'>
+      <div asscroll-container='true'>
+        <div className={`flex flex-col justify-evenly items-center select-none transition-duration-opacity-1 min-h-screen delay-1000 ${loading ? 'opacity-0': ''}`}>
+          <div className='w-full sm:w-2/3 lg:w-1/2 relative'>
             <img src='/images/logo.png'></img>
             <div className='absolute bottom-1/4 right-0'>
               <SplashText text={splashText} />
@@ -45,12 +44,11 @@ export default function Home({ loading }: {loading: boolean}) {
           <h1 className='text-2xl uppercase text-center'>
             The first social media platform designed for Minecraft fans!
           </h1>
-          <div className='flex justify-center gap-x-16 gap-y-8 w-full max-w-2xl flex-wrap'>
+          <div className='flex justify-center gap-x-16 gap-y-8 w-full flex-wrap p-5'>
             <Button text='Try it' func={() => navigate('/sign-in')} />
             <Button text='Learn more' />
           </div>
         </div>
-      </div>
       </div>
     </div>
   )
