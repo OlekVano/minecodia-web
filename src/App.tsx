@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import LoadingScreen from './components/LoadingScreen'
-
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
@@ -8,10 +7,6 @@ import Profile from './pages/Profile'
 
 function App() {
   const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    
-  }, [])
 
   return (
     <div className='App w-full overflow-hidden max-h-screen'>
