@@ -4,47 +4,48 @@ import { IdleAnimation } from 'skinview3d/libs/animation'
 
 import ASScroll from '@ashthornton/asscroll'
 import SmoothScroll from '../components/SmoothScroll'
+import SkinCanvas from '../components/SkinCanvas'
 
 export default function Profile({ loading }: {loading: boolean}) {
-  const skin = useRef<SkinViewer | null>(null)
+  // const skin = useRef<SkinViewer | null>(null)
 
-  function initializeSkin() {
-    skin.current = new SkinViewer({
-      canvas: document.getElementById('skin') as HTMLCanvasElement,
-      width: 200,
-      height: 200,
-      skin: '/images/steve.png'
-    });
-    skin.current.zoom = 0.75
-    skin.current.animation = new IdleAnimation()
-    skin.current.animation.speed = 1
-    skin.current.nameTag = new NameTagObject("hello", { textStyle: "yellow" });
-    skin.current.autoRotate = true
-    skin.current.autoRotateSpeed = 2
-  }
+  // function initializeSkin() {
+  //   skin.current = new SkinViewer({
+  //     canvas: document.getElementById('skin') as HTMLCanvasElement,
+  //     width: 200,
+  //     height: 200,
+  //     skin: '/images/steve.png'
+  //   });
+  //   skin.current.zoom = 0.75
+  //   skin.current.animation = new IdleAnimation()
+  //   skin.current.animation.speed = 1
+  //   skin.current.nameTag = new NameTagObject("hello", { textStyle: "yellow" });
+  //   skin.current.autoRotate = true
+  //   skin.current.autoRotateSpeed = 2
+  // }
 
-  function resizeSkin() {
-    const skinContainer = document.getElementById('skin-container') as HTMLDivElement
-    let width: number
-    let height: number
-    if (skinContainer.clientWidth > skinContainer.clientHeight) {
-      height = width = skinContainer.clientHeight - 5
-    } else {
-      height = width = skinContainer.clientWidth - 5
-    }
+  // function resizeSkin() {
+  //   const skinContainer = document.getElementById('skin-container') as HTMLDivElement
+  //   let width: number
+  //   let height: number
+  //   if (skinContainer.clientWidth > skinContainer.clientHeight) {
+  //     height = width = skinContainer.clientHeight - 5
+  //   } else {
+  //     height = width = skinContainer.clientWidth - 5
+  //   }
 
-    skin.current = skin.current as SkinViewer
-    skin.current.width = width
-    skin.current.height = height
-  }
+  //   skin.current = skin.current as SkinViewer
+  //   skin.current.width = width
+  //   skin.current.height = height
+  // }
 
-  useEffect(() => {
-    initializeSkin()
-    resizeSkin()
-    window.addEventListener('resize', (event) => {
-      resizeSkin()
-    })
-  }, [])
+  // useEffect(() => {
+  //   initializeSkin()
+  //   resizeSkin()
+  //   window.addEventListener('resize', (event) => {
+  //     resizeSkin()
+  //   })
+  // }, [])
 
   return (
     <div>
@@ -52,7 +53,7 @@ export default function Profile({ loading }: {loading: boolean}) {
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>
       <div id='skin-container' className='fixed w-full h-[30vh] s:h-[50vh] md:h-screen md:w-1/2 md:right-0 pointer-events-none grid place-items-center bg-[url("../public/images/house-interior.webp")] bg-cover bg-bottom z-10'>
-        <canvas id='skin'></canvas>
+        <SkinCanvas containerId='skin-container' />
       </div>
       <SmoothScroll loading={loading}>
         <div className='p-5 md:w-1/2'>
