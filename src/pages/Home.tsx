@@ -5,7 +5,7 @@ import SplashText from '../components/SplashText'
 import { useNavigate } from 'react-router-dom'
 import { getRandArrItem } from '../utils'
 
-import ASScroll from '@ashthornton/asscroll'
+import SmoothScroll from '../components/SmoothScroll'
 
 export default function Home({ loading }: {loading: boolean}) {
   const navigate = useNavigate()
@@ -19,21 +19,10 @@ export default function Home({ loading }: {loading: boolean}) {
 
   const [splashText, setSplashText] = useState('')
 
-  useEffect(() => {
-    if (loading) return
-    setSplashText(getRandArrItem(splashTexts))
-
-    const asscroll = new ASScroll()
-    asscroll.enable()
-    return () => {
-      asscroll.disable()
-    }
-  }, [loading])
-
   return (
     <div>
       <PanoramaBackground bgImage='images/panorama-bg.jpg' />
-      <div asscroll-container='true'>
+      <SmoothScroll loading={loading}>
         <div className={`flex flex-col justify-evenly items-center select-none transition-duration-opacity-1 min-h-screen delay-1000 ${loading ? 'opacity-0': ''}`}>
           <div className='w-full sm:w-2/3 lg:w-1/2 relative'>
             <img src='/images/logo.png'></img>
@@ -43,13 +32,14 @@ export default function Home({ loading }: {loading: boolean}) {
           </div>
           <h1 className='text-2xl uppercase text-center'>
             The first social media platform designed for Minecraft fans!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ex voluptas ipsa nam cum repellendus ullam, maiores qui illo, culpa deleniti doloremque dolore quis distinctio ipsam doloribus officiis eaque consequuntur aspernatur quos ut atque assumenda accusantium! Nobis excepturi aliquam neque, quis porro dolor quisquam ab dicta animi blanditiis, sapiente veniam?
           </h1>
           <div className='flex justify-center gap-x-16 gap-y-8 w-full flex-wrap p-5'>
             <Button text='Try it' func={() => navigate('/sign-in')} />
             <Button text='Learn more' />
           </div>
         </div>
-      </div>
+      </SmoothScroll>
     </div>
   )
 }
