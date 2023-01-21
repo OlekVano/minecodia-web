@@ -1,20 +1,20 @@
 import ASScroll from '@ashthornton/asscroll'
-import { useEffect } from 'react'
+import { ReactNode, useEffect } from 'react'
 
-export default function SmoothScroll(props: any) {
+export default function SmoothScroll({ loading, children }: {loading: boolean, children: ReactNode}) {
   useEffect(() => {
-    if (props.loading) return
+    if (loading) return
 
     const asscroll = new ASScroll()
     asscroll.enable()
     return () => {
       asscroll.disable()
     }
-  }, [props.loading])
+  }, [loading])
 
   return (
     <div asscroll-container='true'>
-      {props.children}
+      {children}
     </div>
   )
 }
