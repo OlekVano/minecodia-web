@@ -2,7 +2,12 @@
 
 import styles from './index.module.scss'
 
-export const Button = ({ text='', func=()=>{} }: {text?: string, func?: Function}) => {
+type Props = {
+  text?: string,
+  func?: Function
+}
+
+export const Button = ({ text='', func=()=>{} }: Props) => {
   return (
     <div role='button' className={styles.main} onClick={() => {new Audio('sounds/click.mp3').play(); func()}}>
       <div className={styles.textWrapper}>

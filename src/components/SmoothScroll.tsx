@@ -1,7 +1,12 @@
 import ASScroll from '@ashthornton/asscroll'
 import { ReactNode, useEffect } from 'react'
 
-export default function SmoothScroll({ loading, children }: {loading: boolean, children: ReactNode}) {
+type Props = {
+  loading: boolean,
+  children: ReactNode
+}
+
+export default function SmoothScroll({ loading, children }: Props) {
   useEffect(() => {
     if (loading) return
 

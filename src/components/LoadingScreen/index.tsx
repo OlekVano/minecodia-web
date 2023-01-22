@@ -5,14 +5,19 @@ import styles from './index.module.scss'
 import { useEffect, useState } from 'react'
 import { sleep } from '../../utils'
 
-const statuses: string[] = [
-  'Getting compilation errors',
-  'Pasting the error message in Google search',
-  'Copying code from StackOverflow',
-  'Compilation successful'
-]
+type Props = {
+  loading: boolean,
+  setLoading: Function
+}
 
-export default function LoadingScreen({ loading, setLoading }: { loading: boolean, setLoading: Function }) {
+export default function LoadingScreen({ loading, setLoading }: Props) {
+  const statuses: string[] = [
+    'Getting compilation errors',
+    'Pasting the error message in Google search',
+    'Copying code from StackOverflow',
+    'Compilation successful'
+  ]
+
   const [status, setStatus] = useState('')
 
   useEffect(() => {

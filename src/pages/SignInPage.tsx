@@ -4,7 +4,11 @@ import { auth } from '../firebase-setup'
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
-export default function SignInPage({ loading }: any) {
+type Props = {
+  loading: boolean
+}
+
+export default function SignInPage({ loading }: Props) {
   const navigate = useNavigate()
 
   const [user] = useAuthState(auth)

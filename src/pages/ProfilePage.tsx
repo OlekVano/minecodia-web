@@ -1,14 +1,18 @@
 import SmoothScroll from '../components/SmoothScroll'
 import SkinCanvas from '../components/SkinCanvas'
 
-export default function ProfilePage({ loading }: {loading: boolean}) {
+type Props = {
+  loading: boolean
+}
+
+export default function ProfilePage({ loading }: Props) {
   return (
     <>
       <div className='fixed overflow-x-hidden h-screen w-full'>
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>
       <div id='skin-container' className='fixed w-full h-[30vh] s:h-[50vh] md:h-screen md:w-1/2 md:right-0 pointer-events-none grid place-items-center bg-[url("../public/images/house-interior.webp")] bg-cover bg-bottom z-10'>
-        <SkinCanvas containerId='skin-container' />
+        <SkinCanvas nickname='Hello' containerId='skin-container' skinImg='/images/steve.png'  />
       </div>
       <SmoothScroll loading={loading}>
         <div className='p-5 md:w-1/2'>
