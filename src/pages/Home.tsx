@@ -24,7 +24,7 @@ export default function Home({ loading }: {loading: boolean}) {
   }, [])
 
   return (
-    <div>
+    <>
       <PanoramaBackground bgImage='images/panorama-bg.jpg' />
       <SmoothScroll loading={loading}>
         <div className={`flex flex-col justify-evenly items-center transition-duration-opacity-1 min-h-screen delay-1000 ${loading ? 'opacity-0': ''}`}>
@@ -36,7 +36,6 @@ export default function Home({ loading }: {loading: boolean}) {
           </div>
           <h1 className='text-2xl uppercase text-center'>
             The first social media platform designed for Minecraft fans!
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ex voluptas ipsa nam cum repellendus ullam, maiores qui illo, culpa deleniti doloremque dolore quis distinctio ipsam doloribus officiis eaque consequuntur aspernatur quos ut atque assumenda accusantium! Nobis excepturi aliquam neque, quis porro dolor quisquam ab dicta animi blanditiis, sapiente veniam?
           </h1>
           <div className='flex justify-center gap-x-16 gap-y-8 w-full flex-wrap p-5'>
             <Button text='Try it' func={() => navigate('/sign-in')} />
@@ -44,6 +43,6 @@ export default function Home({ loading }: {loading: boolean}) {
           </div>
         </div>
       </SmoothScroll>
-    </div>
+    </>
   )
 }
