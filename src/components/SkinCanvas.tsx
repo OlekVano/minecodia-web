@@ -2,7 +2,13 @@ import { useEffect, useRef } from 'react'
 import { NameTagObject, SkinViewer } from 'skinview3d'
 import { IdleAnimation } from 'skinview3d/libs/animation'
 
-export default function SkinCanvas({ containerId }: {containerId: string}) {
+type Props = {
+  containerId: string,
+  nickname: string,
+  skinImg: string
+}
+
+export default function SkinCanvas({ containerId, nickname, skinImg }: Props) {
   const skin = useRef<SkinViewer | null>(null)
 
   function initializeSkin() {
@@ -10,12 +16,12 @@ export default function SkinCanvas({ containerId }: {containerId: string}) {
       canvas: document.getElementById('skin') as HTMLCanvasElement,
       width: 200,
       height: 200,
-      skin: '/images/steve.png'
+      skin: skinImg
     });
     skin.current.zoom = 0.75
     skin.current.animation = new IdleAnimation()
     skin.current.animation.speed = 1
-    skin.current.nameTag = new NameTagObject('hello', { textStyle: 'yellow' });
+    skin.current.nameTag = new NameTagObject(nickname, { textStyle: 'yellow' });
     skin.current.autoRotate = true
     skin.current.autoRotateSpeed = 2
   }
