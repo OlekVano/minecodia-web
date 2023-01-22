@@ -14,19 +14,6 @@ type Props = {
 export default function HomePage({ loading }: Props) {
   const navigate = useNavigate()
 
-  const splashTexts = [
-    '99% bug free',
-    'Minecraft???',
-    'Fanmade',
-    'Wake up, coffee, code, faint, repeat',
-  ]
-
-  const [splashText, setSplashText] = useState('')
-
-  useEffect(() => {
-    setSplashText(getRandArrItem(splashTexts))
-  }, [])
-
   return (
     <>
       <PanoramaBackground bgImage='images/panorama-bg.jpg' />
@@ -35,7 +22,7 @@ export default function HomePage({ loading }: Props) {
           <div className='w-full sm:w-2/3 lg:w-1/2 relative select-none'>
             <img src='/images/logo.png'></img>
             <div className='absolute bottom-1/4 right-0'>
-              <SplashText text={splashText} />
+              <SplashText />
             </div>
           </div>
           <h1 className='text-2xl uppercase text-center'>
