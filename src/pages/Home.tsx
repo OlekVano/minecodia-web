@@ -27,8 +27,8 @@ export default function Home({ loading }: {loading: boolean}) {
     <div>
       <PanoramaBackground bgImage='images/panorama-bg.jpg' />
       <SmoothScroll loading={loading}>
-        <div className={`flex flex-col justify-evenly items-center select-none transition-duration-opacity-1 min-h-screen delay-1000 ${loading ? 'opacity-0': ''}`}>
-          <div className='w-full sm:w-2/3 lg:w-1/2 relative'>
+        <div className={`flex flex-col justify-evenly items-center transition-duration-opacity-1 min-h-screen delay-1000 ${loading ? 'opacity-0': ''}`}>
+          <div className='w-full sm:w-2/3 lg:w-1/2 relative select-none'>
             <img src='/images/logo.png'></img>
             <div className='absolute bottom-1/4 right-0'>
               <SplashText text={splashText} />
