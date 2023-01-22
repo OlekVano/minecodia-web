@@ -19,6 +19,10 @@ export default function Home({ loading }: {loading: boolean}) {
 
   const [splashText, setSplashText] = useState('')
 
+  useEffect(() => {
+    setSplashText(getRandArrItem(splashTexts))
+  }, [])
+
   return (
     <div>
       <PanoramaBackground bgImage='images/panorama-bg.jpg' />
