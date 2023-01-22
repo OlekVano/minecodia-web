@@ -3,7 +3,7 @@ import SkinCanvas from '../components/SkinCanvas'
 
 export default function Profile({ loading }: {loading: boolean}) {
   return (
-    <div>
+    <>
       <div className='fixed overflow-x-hidden h-screen w-full'>
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>
@@ -19,6 +19,6 @@ export default function Profile({ loading }: {loading: boolean}) {
           </div>
         </div>
       </SmoothScroll>
-    </div>
+    </>
   )
 }
