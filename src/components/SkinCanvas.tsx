@@ -17,11 +17,11 @@ export default function SkinCanvas({ containerId, nickname, skinImg }: Props) {
       width: 200,
       height: 200,
       skin: skinImg
-    });
+    })
     skin.current.zoom = 0.75
     skin.current.animation = new IdleAnimation()
     skin.current.animation.speed = 1
-    skin.current.nameTag = new NameTagObject(nickname, { textStyle: 'yellow' });
+    skin.current.nameTag = new NameTagObject(nickname, { textStyle: 'yellow' })
     skin.current.autoRotate = true
     skin.current.autoRotateSpeed = 2
   }

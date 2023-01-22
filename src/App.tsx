@@ -17,7 +17,7 @@ function App() {
         <Route path='/profile' element={<ProfilePage loading={loading} />} />
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
