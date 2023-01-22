@@ -8,8 +8,13 @@ type Props = {
 }
 
 export const Button = ({ text='', func=()=>{} }: Props) => {
+  function onClick() {
+    new Audio('sounds/click.mp3').play()
+    func()
+  }
+
   return (
-    <div role='button' className={styles.main} onClick={() => {new Audio('sounds/click.mp3').play(); func()}}>
+    <div role='button' className={styles.main} onClick={onClick}>
       <div className={styles.textWrapper}>
         <div className={styles.text}>
           {text}
