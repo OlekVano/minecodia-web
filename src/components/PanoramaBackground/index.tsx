@@ -1,3 +1,5 @@
+// Panorama Background
+
 import styles from './index.module.scss'
 
 export default function PanoramaBackground({ bgImage }: {bgImage: string}) {

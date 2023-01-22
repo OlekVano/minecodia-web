@@ -1,3 +1,5 @@
+// Splash Text
+
 import styles from './index.module.scss'
 
 export default function SplashText({ text }: {text: string}) {
