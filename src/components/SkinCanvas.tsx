@@ -15,7 +15,7 @@ export default function SkinCanvas({ containerId }: {containerId: string}) {
     skin.current.zoom = 0.75
     skin.current.animation = new IdleAnimation()
     skin.current.animation.speed = 1
-    skin.current.nameTag = new NameTagObject("hello", { textStyle: "yellow" });
+    skin.current.nameTag = new NameTagObject('hello', { textStyle: 'yellow' });
     skin.current.autoRotate = true
     skin.current.autoRotateSpeed = 2
   }

@@ -2,7 +2,7 @@ import { Button } from '../components/Button'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '../firebase-setup'
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 export default function SignInPage({ loading }: any) {
   const navigate = useNavigate()
