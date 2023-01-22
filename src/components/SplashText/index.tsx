@@ -19,6 +19,6 @@ export default function SplashText() {
   }, [])
 
   return (
-    <div className={`${styles.main} text-yellow-300 font-["minecraft"] -rotate-[15deg] text-sm`}>{text}</div>
+    <div className={`${styles.main} text-yellow-300 font-["minecraft"] -rotate-[15deg] text-sm text-center`}>{text}</div>
   )
 }
