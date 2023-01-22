@@ -4,7 +4,7 @@ import { auth } from '../firebase-setup'
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import { useNavigate } from "react-router-dom";
 
-export default function SignIn({ loading }: any) {
+export default function SignInPage({ loading }: any) {
   const navigate = useNavigate()
 
   const [user] = useAuthState(auth)

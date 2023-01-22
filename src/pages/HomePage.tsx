@@ -7,7 +7,7 @@ import { getRandArrItem } from '../utils'
 
 import SmoothScroll from '../components/SmoothScroll'
 
-export default function Home({ loading }: {loading: boolean}) {
+export default function HomePage({ loading }: {loading: boolean}) {
   const navigate = useNavigate()
 
   const splashTexts = [

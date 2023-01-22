@@ -1,7 +1,7 @@
 import SmoothScroll from '../components/SmoothScroll'
 import SkinCanvas from '../components/SkinCanvas'
 
-export default function Profile({ loading }: {loading: boolean}) {
+export default function ProfilePage({ loading }: {loading: boolean}) {
   return (
     <>
       <div className='fixed overflow-x-hidden h-screen w-full'>
