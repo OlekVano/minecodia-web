@@ -1,7 +1,7 @@
 import SmoothScroll from '../components/SmoothScroll'
-import SkinCanvas from '../components/SkinCanvas'
 import { User } from 'firebase/auth'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
+import Avatar from '../components/Avatar'
 
 type Props = {
   loading: boolean,
@@ -16,8 +16,8 @@ export default function ProfilePage({ loading, user, navigate, redirrectToSignIn
       <div className='fixed overflow-x-hidden h-screen w-full'>
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>
-      <div id='skin-container' className='fixed w-full h-[30vh] s:h-[50vh] md:h-screen md:w-1/2 md:right-0 pointer-events-none grid place-items-center bg-[url("../public/images/house-interior.webp")] bg-cover bg-bottom z-10'>
-        <SkinCanvas nickname='Hello' containerId='skin-container' skinImg='/images/steve.png'  />
+      <div className='fixed w-full h-[30vh] s:h-[50vh] md:h-screen md:w-1/2 md:right-0 z-10'>
+        <Avatar background='images/house-interior.webp' skin='images/steve.png' nickname='Steven' />
       </div>
       <SmoothScroll loading={loading}>
         <div className='p-5 md:w-1/2'>
