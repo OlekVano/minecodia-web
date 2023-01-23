@@ -36,11 +36,7 @@ export default function SignInPage({ loading, user, navigate }: Props) {
   }
 
   return (
-    <>
-    {
-      loading ? <></>
-      : 
-      <div className='w-full h-screen bg-[url("../public/images/dirt-bg.webp")] font-["minecraft"] bg-cover bg-center grid place-items-center'>
+    <div className='w-full h-screen bg-[url("../public/images/dirt-bg.webp")] font-["minecraft"] bg-cover bg-center grid place-items-center'>
       <div className={`gap-10 flex transition-duration-opacity-1 delay-1000 flex-wrap justify-center ${loading ? 'opacity-0' : ''}`}>
         {
           user ?
@@ -57,7 +53,5 @@ export default function SignInPage({ loading, user, navigate }: Props) {
         }
       </div>
     </div>
-    }
-    </>
   )
 }
