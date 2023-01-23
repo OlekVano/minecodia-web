@@ -1,16 +1,15 @@
 import { Button } from '../components/Button'
 import { auth } from '../firebase-setup'
 import { GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom'
+import { NavigateFunction, useNavigate } from 'react-router-dom'
 
 type Props = {
   loading: boolean,
-  user: User | undefined | null
+  user: User | undefined | null,
+  navigate: NavigateFunction
 }
 
-export default function SignInPage({ loading, user }: Props) {
-  const navigate = useNavigate()
-
+export default function SignInPage({ loading, user, navigate }: Props) {
   function signIn() {
     const provider = new GoogleAuthProvider()
     

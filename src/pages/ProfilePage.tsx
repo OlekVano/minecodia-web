@@ -1,11 +1,19 @@
 import SmoothScroll from '../components/SmoothScroll'
 import SkinCanvas from '../components/SkinCanvas'
+import { User } from 'firebase/auth'
+import { NavigateFunction, useNavigate } from 'react-router-dom'
 
 type Props = {
-  loading: boolean
+  loading: boolean,
+  user: User | undefined | null,
+  navigate: NavigateFunction
 }
 
-export default function ProfilePage({ loading }: Props) {
+export default function ProfilePage({ loading, user, navigate }: Props) {
+  if (!user) {
+    navigate('/sign-in')
+  }
+
   return (
     <>
       <div className='fixed overflow-x-hidden h-screen w-full'>

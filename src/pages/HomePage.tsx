@@ -2,18 +2,17 @@ import { useEffect, useState } from 'react'
 import { Button } from '../components/Button'
 import PanoramaBackground from '../components/PanoramaBackground'
 import SplashText from '../components/SplashText'
-import { useNavigate } from 'react-router-dom'
+import { NavigateFunction, useNavigate } from 'react-router-dom'
 import { getRandArrItem } from '../utils'
 
 import SmoothScroll from '../components/SmoothScroll'
 
 type Props = {
-  loading: boolean
+  loading: boolean,
+  navigate: NavigateFunction
 }
 
-export default function HomePage({ loading }: Props) {
-  const navigate = useNavigate()
-
+export default function HomePage({ loading, navigate }: Props) {
   return (
     <>
       <PanoramaBackground bgImage='images/panorama-bg.jpg' />

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import LoadingScreen from './components/LoadingScreen'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import SignInPage from './pages/SignInPage'
 import ProfilePage from './pages/ProfilePage'
@@ -9,16 +9,16 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 
 function App() {
   const [loading, setLoading] = useState(true)
-
   const [user] = useAuthState(auth)
-
+  const navigate = useNavigate()
+  
   return (
     <div className='App w-full overflow-hidden max-h-screen'>
       <LoadingScreen loading={loading} setLoading={setLoading} />
       <Routes>
-        <Route index element={<HomePage loading={loading} />} />
-        <Route path='/sign-in' element={<SignInPage loading={loading} user={user} />} />
-        <Route path='/profile' element={<ProfilePage loading={loading} />} />
+        <Route index element={<HomePage loading={loading} navigate={navigate} />} />
+        <Route path='/sign-in' element={<SignInPage loading={loading} user={user} navigate={navigate} />} />
+        <Route path='/profile' element={<ProfilePage loading={loading} user={user} navigate={navigate} />} />
       </Routes>
     </div>
   )
