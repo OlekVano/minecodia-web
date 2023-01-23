@@ -6,7 +6,7 @@ import { NavigateFunction, useNavigate } from 'react-router-dom'
 type Props = {
   loading: boolean,
   user: User | undefined | null,
-  navigate: NavigateFunction
+  navigate: NavigateFunction,
 }
 
 export default function SignInPage({ loading, user, navigate }: Props) {

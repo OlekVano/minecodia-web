@@ -6,14 +6,11 @@ import { NavigateFunction, useNavigate } from 'react-router-dom'
 type Props = {
   loading: boolean,
   user: User | undefined | null,
-  navigate: NavigateFunction
+  navigate: NavigateFunction,
+  redirrectToSignIn: Function
 }
 
-export default function ProfilePage({ loading, user, navigate }: Props) {
-  if (!user) {
-    navigate('/sign-in')
-  }
-
+export default function ProfilePage({ loading, user, navigate, redirrectToSignIn }: Props) {
   return (
     <>
       <div className='fixed overflow-x-hidden h-screen w-full'>
