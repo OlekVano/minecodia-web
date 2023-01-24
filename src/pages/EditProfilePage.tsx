@@ -73,13 +73,15 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
 
   useEffect(() => {
     if (!user || skins.length === 0 || backgrounds.length === 0) return
-    try {
-      fetchUserById(user.uid, user).then(profile => {
-        if (profile) setState(profile)
+    fetchUserById(user.uid, user).then(profile => {
+      if (profile) setState(profile)
+      else setState({
+        background: backgrounds[0],
+        skin: skins[0],
+        description: '',
+        nickname: ''
       })
-    } finally {
-
-    }
+    })
   }, [skins, user, backgrounds])
 
   return (
