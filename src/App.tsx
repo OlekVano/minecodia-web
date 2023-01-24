@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import SignInPage from './pages/SignInPage'
 import ProfilePage from './pages/ProfilePage'
+import EditProfilePage from './pages/EditProfilePage'
 import { auth } from './firebase-setup'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
@@ -22,7 +23,8 @@ function App() {
       <Routes>
         <Route index element={<HomePage loading={loading} navigate={navigate} />} />
         <Route path='/sign-in' element={<SignInPage loading={loading} user={user} navigate={navigate} />} />
-        <Route path='/profile' element={<ProfilePage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} />} />
+        <Route path='/profile/:userId' element={<ProfilePage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} />} />
+        <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} />} />
       </Routes>
     </div>
   )
