@@ -1,7 +1,6 @@
-
 import SmoothScroll from '../components/SmoothScroll'
 import { User as AuthUser } from 'firebase/auth'
-import { NavigateFunction, useNavigate } from 'react-router-dom'
+import { NavigateFunction } from 'react-router-dom'
 import Avatar from '../components/Avatar'
 import { useEffect, useState } from 'react'
 import { fetchUserById } from '../utils'
@@ -12,10 +11,9 @@ type Props = {
   loading: boolean,
   user: AuthUser | undefined | null,
   navigate: NavigateFunction,
-  redirrectToSignIn: Function
 }
 
-export default function EditProfilePage({ loading, user, navigate, redirrectToSignIn }: Props) {
+export default function EditProfilePage({ loading, user, navigate }: Props) {
   const [skins, setSkins] = useState<string[]>([])
   const [backgrounds, setBackgrounds] = useState<string[]>([])
   const [state, setState] = useState<UserProfile | {}>({})
@@ -64,6 +62,8 @@ export default function EditProfilePage({ loading, user, navigate, redirrectToSi
       headers: new Headers({'Authorization': `Bearer ${await user?.getIdToken()}`, 'Content-Type': 'application/json'}),
       body: json,
     })
+
+    if (res.status === 200) navigate(`/profile/${user?.uid}`)
   }
 
   useEffect(() => {
@@ -80,7 +80,7 @@ export default function EditProfilePage({ loading, user, navigate, redirrectToSi
     } finally {
 
     }
-  }, [skins, user])
+  }, [skins, user, backgrounds])
 
   return (
     <>

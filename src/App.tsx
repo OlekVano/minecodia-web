@@ -24,7 +24,7 @@ function App() {
         <Route index element={<HomePage loading={loading} navigate={navigate} />} />
         <Route path='/sign-in' element={<SignInPage loading={loading} user={user} navigate={navigate} />} />
         <Route path='/profile/:userId' element={<ProfilePage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} />} />
-        <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} />} />
+        <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} />} />
       </Routes>
     </div>
   )
