@@ -1,7 +1,8 @@
 import { Button } from '../components/Button'
 import { auth } from '../firebase-setup'
-import { GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/auth'
-import { NavigateFunction, useNavigate } from 'react-router-dom'
+import { Auth, GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/auth'
+import { NavigateFunction } from 'react-router-dom'
+import { fetchUserById } from '../utils'
 
 type Props = {
   loading: boolean,
@@ -14,24 +15,26 @@ export default function SignInPage({ loading, user, navigate }: Props) {
     const provider = new GoogleAuthProvider()
     
     signInWithPopup(auth, provider)
-    // .then((result) => {
-    //   // This gives you a Google Access Token. You can use it to access the Google API.
-    //   const credential = GoogleAuthProvider.credentialFromResult(result)
-    //   if (credential == null) return
-    //   const token = credential.accessToken
-    //   // The signed-in user info.
-    //   const user = result.user
-    //   // ...
-    // })
+    .then(async (result) => {
+      const userProfile = await fetchUserById((auth.currentUser as User).uid, auth.currentUser as User)
+      if (!userProfile) navigate('/edit-profile')
+      // // This gives you a Google Access Token. You can use it to access the Google API.
+      // const credential = GoogleAuthProvider.credentialFromResult(result)
+      // if (credential == null) return
+      // const token = credential.accessToken
+      // // The signed-in user info.
+      // const user = result.user
+      // ...
+    })
     // .catch((error) => {
-    //   // Handle Errors here.
-    //   const errorCode = error.code
-    //   const errorMessage = error.message
-    //   // The email of the user's account used.
-    //   const email = error.customData.email
-    //   // The AuthCredential type that was used.
-    //   const credential = GoogleAuthProvider.credentialFromError(error)
-    //   // ...
+      // // Handle Errors here.
+      // const errorCode = error.code
+      // const errorMessage = error.message
+      // // The email of the user's account used.
+      // const email = error.customData.email
+      // // The AuthCredential type that was used.
+      // const credential = GoogleAuthProvider.credentialFromError(error)
+      // ...
     // })
   }
 
@@ -47,7 +50,7 @@ export default function SignInPage({ loading, user, navigate }: Props) {
           </>
           :
           <>
-            <div className='w-full text-center  text-white' style={{wordSpacing: '3.5px'}}>Signing in allows posting, commenting and having a profile...</div>
+            <div className='w-full text-center  text-white' style={{wordSpacing: '3.5px'}}>Only authenticated users can use this application</div>
             <Button text='Sign In' func={signIn} />
           </>
         }
