@@ -15,11 +15,13 @@ type Props = {
 
 export default function ProfilePage({ loading, user, navigate, redirrectToSignIn }: Props) {
   const { userId } = useParams()
-  const [profile, setProfile] = useState<UserProfile>()
+  const [profile, setProfile] = useState<UserProfile | undefined>()
+  const [fetching, setFetching] = useState(true)
 
   async function fetchProfile() {
     const profile = await fetchUserById(userId as string, user as AuthUser)
     setProfile(profile)
+    setFetching(false)
   }
 
   useEffect(() => {
@@ -45,6 +47,12 @@ export default function ProfilePage({ loading, user, navigate, redirrectToSignIn
           </div>
         </div>
         </SmoothScroll>
+      </div>
+      : !profile && !fetching ?
+      <div className='grid place-items-center w-screen h-screen opacity-100'>
+        <div className='z-10 text-3xl'>
+          User not found
+        </div>
       </div>
       : <></>
       }
