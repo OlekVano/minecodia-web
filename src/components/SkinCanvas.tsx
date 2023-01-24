@@ -42,12 +42,19 @@ export default function SkinCanvas({ containerId, nickname, skinImg }: Props) {
   }
 
   useEffect(() => {
-    initializeSkin()
-    resizeSkin()
     window.addEventListener('resize', (event) => {
       resizeSkin()
     })
   }, [])
+
+  useEffect(() => {
+    initializeSkin()
+    resizeSkin()
+  }, [skinImg])
+
+  useEffect(() => {
+    (skin.current as SkinViewer).nameTag = new NameTagObject(nickname, { textStyle: 'yellow' })
+  }, [nickname])
 
   return (
     <canvas id='skin'></canvas>

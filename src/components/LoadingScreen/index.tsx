@@ -32,9 +32,9 @@ export default function LoadingScreen({ loading, setLoading }: Props) {
       }
       setLoading(false)
 
-      new Audio('sounds/pop.mp3').play()
+      new Audio('/sounds/pop.mp3').play()
       await sleep(1000)
-      new Audio('sounds/orb.mp3').play()
+      new Audio('/sounds/orb.mp3').play()
     })()
   }, [])
 
