@@ -10,7 +10,9 @@ export default function SmoothScroll({ loading, children }: Props) {
   useEffect(() => {
     if (loading) return
 
-    const asscroll = new ASScroll()
+    const asscroll = new ASScroll({
+      ease: 0.05
+    })
     asscroll.enable()
     return () => {
       asscroll.disable()
