@@ -18,18 +18,6 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
   const [backgrounds, setBackgrounds] = useState<string[]>([])
   const [state, setState] = useState<UserProfile | {}>({})
 
-  function setNickname(value: string): void {
-    const newState = {...state}
-    newState.nickname = value
-    setState(newState)
-  }
-
-  function setDescription(value: string): void {
-    const newState = {...state}
-    newState.description = value
-    setState(newState)
-  }
-
   async function setDefaultSkins() {
     fetch(`${process.env.REACT_APP_API_URL}/skins/default`).then(res => res.json()).then(json => setSkins(json))
   }
@@ -38,22 +26,75 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
     fetch(`${process.env.REACT_APP_API_URL}/backgrounds/default`).then(res => res.json()).then(json => setBackgrounds(json))
   }
 
-  function changeSkin() {
+  function setStateProperty(property: keyof UserProfile, value: string): void {
     const newState: UserProfile = {...state} as UserProfile
-    const currSkinIndex = skins.indexOf(newState.skin)
-    const newSkinIndex = currSkinIndex === skins.length - 1 ? 0 : currSkinIndex + 1
-    newState.skin = skins[newSkinIndex]
+    newState[property] = value
     setState(newState)
+  }
+
+  function setNickname(value: string): void {
+    setStateProperty('nickname', value)
+  }
+
+  function setDescription(value: string): void {
+    setStateProperty('background', value)
+  }
+
+  function setSkin(value: string): void {
+    setStateProperty('skin', value)
+  }
+
+  function setBackground(value: string): void {
+    setStateProperty('background', value)
+  }
+
+  function changeSkin() {
+    const currSkinIndex = skins.indexOf((state as UserProfile).skin)
+    const newSkinIndex = currSkinIndex === skins.length - 1 ? 0 : currSkinIndex + 1
+    setSkin(skins[newSkinIndex])
   }
 
   function changeBackground() {
-    const newState: UserProfile = {...state} as UserProfile
-    const currBackgroundIndex = backgrounds.indexOf(newState.background)
+    const currBackgroundIndex = backgrounds.indexOf((state as UserProfile).background)
     const newBackgroundIndex = currBackgroundIndex === backgrounds.length - 1 ? 0 : currBackgroundIndex + 1
-    newState.background = backgrounds[newBackgroundIndex]
-    setState(newState)
+    setBackground(backgrounds[newBackgroundIndex])
   }
 
+  function uploadSkin(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!e.target.files) return
+    const file = e.target.files[0]
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = () => {
+      const image = new Image()
+      image.onload = () => {
+        if (image.width !== 64 || image.height !== 64) {
+          alert(`Bad skin size: ${image.width}x${image.height}\nSkins must be 64x64 pixels`)
+        }
+        else setSkin(fileReader.result as string)
+      }
+      // The line below calls image.onload
+      image.src = fileReader.result as string
+    }
+  }
+
+  function uploadBackground(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!e.target.files) return
+    const file = e.target.files[0]
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = () => {
+      const image = new Image()
+      image.onload = () => {
+        if (image.width > 1000 || image.height > 1000) {
+          alert(`Bad background size: ${image.width}x${image.height}\nBackgrounds must be at maximum 1000x1000 pixels`)
+        }
+        else setBackground(fileReader.result as string)
+      }
+      // The line below calls image.onload
+      image.src = fileReader.result as string
+    }
+  }
   async function saveChanges() {
     const json = JSON.stringify(state)
 
@@ -64,6 +105,7 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
     })
 
     if (res.status === 200) navigate(`/profile/${user?.uid}`)
+    else alert(`Error: ${res.statusText}`)
   }
 
   useEffect(() => {
@@ -101,8 +143,15 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
               <div className='flex flex-col gap-4 items-center'>
                 <label htmlFor='nickname-input'>Nickname</label>
                 <input id='nickname-input' type='text' className='bg-opacity-50 w-full p-2 bg-black border-2 border-gray-300 outline-none' onChange={e => setNickname(e.target.value.trim())} defaultValue={(state as UserProfile).nickname} />
-                <Button text='Change Skin' func={changeSkin} />
-                <Button text='Change Background' func={changeBackground} />
+                <div className='gap-4 flex flex-wrap justify-center max-w-full'>
+                  <Button text='Change Skin' func={changeSkin} />
+                  <Button text='Upload Skin' func={() => document.getElementById('skin-upload')?.click()} />
+                  <input id='skin-upload' onChange={uploadSkin} type='file' className='hidden' />
+                  <Button text='Change Background' func={changeBackground} />
+                  <Button text='Upload Background' func={() => document.getElementById('background-upload')?.click()} />
+                  <input id='background-upload' onChange={uploadBackground} type='file' className='hidden' />
+                </div>
+
                 <label htmlFor='description-input'>Description</label>
                 <textarea id='description-input' className='w-full p-2 bg-opacity-50 bg-black border-2 border-gray-300 h-[350px] resize-none outline-none' defaultValue={(state as UserProfile).description} onChange={e => setDescription(e.target.value.trim())} />
                 <Button text='Save' func={saveChanges} />
