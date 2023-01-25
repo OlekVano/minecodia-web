@@ -37,7 +37,7 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
   }
 
   function setDescription(value: string): void {
-    setStateProperty('background', value)
+    setStateProperty('description', value)
   }
 
   function setSkin(value: string): void {
