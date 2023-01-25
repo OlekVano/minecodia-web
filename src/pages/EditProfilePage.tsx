@@ -18,6 +18,11 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
   const [backgrounds, setBackgrounds] = useState<string[]>([])
   const [state, setState] = useState<UserProfile | {}>({})
 
+  const maxNicknameLen = 15
+  const maxDescriptionLen = 100
+  const maxImageWidth = 1000
+  const maxImageHeight = 1000
+
   async function setDefaultSkins() {
     fetch(`${process.env.REACT_APP_API_URL}/skins/default`).then(res => res.json()).then(json => setSkins(json))
   }
@@ -86,8 +91,8 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
     fileReader.onload = () => {
       const image = new Image()
       image.onload = () => {
-        if (image.width > 1000 || image.height > 1000) {
-          alert(`Bad background size: ${image.width}x${image.height}\nBackgrounds must be at maximum 1000x1000 pixels`)
+        if (image.width > maxImageWidth || image.height > maxImageHeight) {
+          alert(`Bad background size: ${image.width}x${image.height}\nBackgrounds must be at maximum ${maxImageWidth}x${maxImageHeight} pixels`)
         }
         else setBackground(fileReader.result as string)
       }
@@ -95,7 +100,23 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
       image.src = fileReader.result as string
     }
   }
+
+  function manageDescriptionInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    if (e.target.value.length > maxDescriptionLen) alert('Description can only contain 100 characters')
+    else setDescription(e.target.value)
+  }
+
+  function manageNicknameInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const nickname = e.target.value.trim()
+    if (nickname.length > maxNicknameLen) alert('Nickname can only contain 15 characters')
+    else setNickname(nickname)
+  }
+
   async function saveChanges() {
+    if ((state as UserProfile).nickname.trim().length === 0) {
+      alert('Nickname cannot be empty')
+    }
+
     const json = JSON.stringify(state)
 
     const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${user?.uid}`, {
@@ -142,7 +163,7 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
             <div className='mt-[30vh] s:mt-[50vh] md:mt-0 h-full'>
               <div className='flex flex-col gap-4 items-center'>
                 <label htmlFor='nickname-input'>Nickname</label>
-                <input id='nickname-input' type='text' className='bg-opacity-50 w-full p-2 bg-black border-2 border-gray-300 outline-none' onChange={e => setNickname(e.target.value.trim())} defaultValue={(state as UserProfile).nickname} />
+                <input id='nickname-input' type='text' className='bg-opacity-50 w-full p-2 bg-black border-2 border-gray-300 outline-none' onChange={manageNicknameInputChange} value={(state as UserProfile).nickname} />
                 <div className='gap-4 flex flex-wrap justify-center max-w-full'>
                   <Button text='Change Skin' func={changeSkin} />
                   <Button text='Upload Skin' func={() => document.getElementById('skin-upload')?.click()} />
@@ -153,7 +174,7 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
                 </div>
 
                 <label htmlFor='description-input'>Description</label>
-                <textarea id='description-input' className='w-full p-2 bg-opacity-50 bg-black border-2 border-gray-300 h-[350px] resize-none outline-none' defaultValue={(state as UserProfile).description} onChange={e => setDescription(e.target.value.trim())} />
+                <textarea id='description-input' className='overflow-hidden w-full p-2 bg-opacity-50 bg-black border-2 border-gray-300 h-[350px] resize-none outline-none' onChange={manageDescriptionInputChange} value={(state as UserProfile).description} />
                 <Button text='Save' func={saveChanges} />
               </div>
             </div>
