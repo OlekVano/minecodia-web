@@ -100,11 +100,11 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
             <div className='mt-[30vh] s:mt-[50vh] md:mt-0 h-full'>
               <div className='flex flex-col gap-4 items-center'>
                 <label htmlFor='nickname-input'>Nickname</label>
-                <input id='nickname-input' type='text' className='w-full p-2 bg-orange-900 border border-orange-800 outline-none' onChange={e => setNickname(e.target.value.trim())} defaultValue={(state as UserProfile).nickname} />
+                <input id='nickname-input' type='text' className='bg-opacity-50 w-full p-2 bg-black border-2 border-gray-300 outline-none' onChange={e => setNickname(e.target.value.trim())} defaultValue={(state as UserProfile).nickname} />
                 <Button text='Change Skin' func={changeSkin} />
                 <Button text='Change Background' func={changeBackground} />
                 <label htmlFor='description-input'>Description</label>
-                <textarea id='description-input' className='w-full p-1 bg-orange-900 border border-orange-800 h-[350px] resize-none outline-none' defaultValue={(state as UserProfile).description} onChange={e => setDescription(e.target.value.trim())} />
+                <textarea id='description-input' className='w-full p-2 bg-opacity-50 bg-black border-2 border-gray-300 h-[350px] resize-none outline-none' defaultValue={(state as UserProfile).description} onChange={e => setDescription(e.target.value.trim())} />
                 <Button text='Save' func={saveChanges} />
               </div>
             </div>
