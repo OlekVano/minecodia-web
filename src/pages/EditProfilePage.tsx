@@ -7,6 +7,7 @@ import { fetchUserById } from '../utils'
 import { Button } from '../components/Button'
 import { UserProfile } from '../types'
 import TextInput from '../components/TextInput'
+import TextAreaInput from '../components/TextAreaInput'
 
 type Props = {
   loading: boolean,
@@ -175,7 +176,7 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
                 </div>
 
                 <label htmlFor='description-input'>Description</label>
-                <textarea id='description-input' className='overflow-hidden w-full p-2 bg-opacity-50 bg-black border-2 border-gray-300 h-[350px] resize-none outline-none' onChange={manageDescriptionInputChange} value={(state as UserProfile).description} />
+                <TextAreaInput id='description-input' onChangeFunc={manageDescriptionInputChange} value={(state as UserProfile).description} />
                 <Button text='Save' func={saveChanges} />
               </div>
             </div>
