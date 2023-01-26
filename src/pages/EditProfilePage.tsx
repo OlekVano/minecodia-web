@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { fetchUserById } from '../utils'
 import { Button } from '../components/Button'
 import { UserProfile } from '../types'
+import TextInput from '../components/TextInput'
 
 type Props = {
   loading: boolean,
@@ -163,7 +164,7 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
             <div className='mt-[30vh] s:mt-[50vh] md:mt-0 h-full'>
               <div className='flex flex-col gap-4 items-center'>
                 <label htmlFor='nickname-input'>Nickname</label>
-                <input id='nickname-input' type='text' className='bg-opacity-50 w-full p-2 bg-black border-2 border-gray-300 outline-none' onChange={manageNicknameInputChange} value={(state as UserProfile).nickname} />
+                <TextInput id='nickname-input' value={(state as UserProfile).nickname} onChangeFunc={manageNicknameInputChange} />
                 <div className='gap-4 flex flex-wrap justify-center max-w-full'>
                   <Button text='Change Skin' func={changeSkin} />
                   <Button text='Upload Skin' func={() => document.getElementById('skin-upload')?.click()} />
