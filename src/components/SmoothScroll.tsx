@@ -11,7 +11,7 @@ export default function SmoothScroll({ loading, children }: Props) {
     if (loading) return
 
     const asscroll = new ASScroll({
-      ease: 0.05
+      
     })
     asscroll.enable()
     return () => {
