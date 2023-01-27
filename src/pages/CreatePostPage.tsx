@@ -87,7 +87,7 @@ export default function CreatePostPage({ loading, user, navigate }: Props) {
           </div>
           <div className='w-full flex flex-wrap justify-around gap-2'>
             {
-              postImage ? <img src={postImage} className='block' /> : <></>
+              // postImage ? <img src={postImage} className='block' /> : <></>
             }
             <Button text='Upload Image' func={() => document.getElementById('image-upload')?.click()} />
             <input id='image-upload' onChange={uploadImage} type='file' className='hidden' />

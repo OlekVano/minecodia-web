@@ -8,6 +8,7 @@ import EditProfilePage from './pages/EditProfilePage'
 import CreatePostPage from './pages/CreatePostPage'
 import { auth } from './firebase-setup'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import PostPage from './pages/PostPage'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -27,6 +28,8 @@ function App() {
         <Route path='/profile/:userId' element={<ProfilePage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} />} />
         <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} />} />
         <Route path='/create-post' element={<CreatePostPage loading={loading} user={user} navigate={navigate} />} />
+        <Route path='/posts/:postId' element={<PostPage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} />} />
+
       </Routes>
     </div>
   )
