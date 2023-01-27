@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage'
 import SignInPage from './pages/SignInPage'
 import ProfilePage from './pages/ProfilePage'
 import EditProfilePage from './pages/EditProfilePage'
+import CreatePostPage from './pages/CreatePostPage'
 import { auth } from './firebase-setup'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
@@ -25,6 +26,7 @@ function App() {
         <Route path='/sign-in' element={<SignInPage loading={loading} user={user} navigate={navigate} />} />
         <Route path='/profile/:userId' element={<ProfilePage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} />} />
         <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} />} />
+        <Route path='/create-post' element={<CreatePostPage loading={loading} user={user} navigate={navigate} />} />
       </Routes>
     </div>
   )

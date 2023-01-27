@@ -104,19 +104,20 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
   }
 
   function manageDescriptionInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    if (e.target.value.length > maxDescriptionLen) alert('Description can only contain 100 characters')
+    if (e.target.value.length > maxDescriptionLen) alert(`Description can only contain up to ${maxDescriptionLen} characters`)
     else setDescription(e.target.value)
   }
 
   function manageNicknameInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const nickname = e.target.value.trim()
-    if (nickname.length > maxNicknameLen) alert('Nickname can only contain 15 characters')
+    if (nickname.length > maxNicknameLen) alert(`Nickname can only contain up to ${maxNicknameLen} characters`)
     else setNickname(nickname)
   }
 
   async function saveChanges() {
     if ((state as UserProfile).nickname.trim().length === 0) {
       alert('Nickname cannot be empty')
+      return
     }
 
     const json = JSON.stringify(state)
