@@ -16,8 +16,8 @@ export default function CreatePostPage({ loading, user, navigate }: Props) {
   const [postContent, setPostContent] = useState('')
   const [postImage, setPostImage] = useState('')
 
-  const maxTitleLen = 30
-  const maxTextLen = 500
+  const maxTitleLen = 100
+  const maxTextLen = 2500
   const maxImageWidth = 1000
   const maxImageHeight = 1000
 
