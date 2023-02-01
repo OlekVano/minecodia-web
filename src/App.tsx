@@ -9,6 +9,7 @@ import CreatePostPage from './pages/CreatePostPage'
 import { auth } from './firebase-setup'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import PostPage from './pages/PostPage'
+import NavBar from './components/NavBar'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -22,6 +23,10 @@ function App() {
   return (
     <div className='App w-full overflow-hidden max-h-screen'>
       <LoadingScreen loading={loading} setLoading={setLoading} />
+      <Routes>
+        <Route index element={null} />
+        <Route path='*' element={<NavBar user={user} navigate={navigate} />} />
+      </Routes>
       <Routes>
         <Route index element={<HomePage loading={loading} navigate={navigate} />} />
         <Route path='/sign-in' element={<SignInPage loading={loading} user={user} navigate={navigate} />} />
