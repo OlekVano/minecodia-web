@@ -1,6 +1,6 @@
 import SmoothScroll from '../components/SmoothScroll'
 import { User as AuthUser } from 'firebase/auth'
-import { NavigateFunction, useParams } from 'react-router-dom'
+import { Navigate, NavigateFunction, useParams } from 'react-router-dom'
 import Avatar from '../components/Avatar'
 import { useEffect, useState } from 'react'
 import { UserProfile } from '../types'
@@ -48,6 +48,8 @@ export default function ProfilePage({ loading, user, navigate, redirrectToSignIn
         </div>
         </SmoothScroll>
       </div>
+      : !profile && user?.uid === userId ?
+      <Navigate to='/edit-profile' />
       : !profile && !fetching ?
       <div className='grid place-items-center w-screen h-screen opacity-100'>
         <div className='z-10 text-3xl'>
