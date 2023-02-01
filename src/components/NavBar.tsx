@@ -9,7 +9,7 @@ type Props = {
 
 export default function NavBar({ user, navigate }: Props) {
   return (
-    <div className='fixed w-full h-16 px-5 bg-[url(../public/images/plank.jpg)] bg-contain flex justify-items-stretch items-center z-40'>
+    <div className='fixed w-full h-12 px-5 max-s:px-0 bg-[url(../public/images/plank.jpg)] bg-contain flex justify-items-stretch items-center z-40'>
       <NavBarBtn navigate={navigate} path='/' text='Home' icon='/images/bookshelf.webp' />
       <NavBarBtn navigate={navigate} path='/explore' text='Explore' icon='/images/sword.webp' />
       <NavBarBtn navigate={navigate} path='/create-post' text='Post' icon='/images/book-and-quill.webp' />
