@@ -38,7 +38,7 @@ export default function PostPage({ loading, user, navigate, redirrectToSignIn }:
       <div className={`transition-duration-opacity-1 delay-1000 ${loading ? 'opacity-0' : ''}`}>
         <SmoothScroll loading={loading}>
           <div className='max-w-2xl mx-auto bg-black bg-opacity-50 min-h-[100vh]'>
-          <div className='p-5'>
+          <div className='p-5 flex flex-col gap-8'>
             <h1 className='text-3xl text-center'>{post.title}</h1>
             {
               post.image ? <div className='w-full p-10'><img className='w-full' src={post.image} /></div> : <></>
