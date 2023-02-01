@@ -79,16 +79,13 @@ export default function CreatePostPage({ loading, user, navigate }: Props) {
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>
       <SmoothScroll loading={loading}>
-        <div className='flex flex-col items-center p-4 max-w-2xl mx-auto gap-6'>
+        <div className='flex flex-col items-center p-4 pt-16 max-w-2xl mx-auto gap-6'>
           <h1 className='text-3xl'>Create a post</h1>
           <div className='w-full flex flex-col items-center gap-2'>
             <label htmlFor='title-input' className='text-xl'>Title</label>
             <TextInput id='title-input' value={postTitle} onChangeFunc={manageTitleInputChange} />
           </div>
           <div className='w-full flex flex-wrap justify-around gap-2'>
-            {
-              // postImage ? <img src={postImage} className='block' /> : <></>
-            }
             <Button text='Upload Image' func={() => document.getElementById('image-upload')?.click()} />
             <input id='image-upload' onChange={uploadImage} type='file' className='hidden' />
             {

@@ -34,7 +34,6 @@ function App() {
         <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} />} />
         <Route path='/create-post' element={<CreatePostPage loading={loading} user={user} navigate={navigate} />} />
         <Route path='/posts/:postId' element={<PostPage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} />} />
-
       </Routes>
     </div>
   )

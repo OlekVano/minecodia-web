@@ -159,11 +159,13 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
         Object.keys(state).length === 0 ? <></> :
         <div className={`transition-duration-opacity-1 delay-1000 ${loading ? 'opacity-0' : ''}`}>
           <div className='fixed w-full h-[30vh] s:h-[50vh] md:h-screen md:w-1/2 md:right-0 z-10'>
-            <Avatar background={(state as UserProfile).background} skin={(state as UserProfile).skin} nickname={(state as UserProfile).nickname} />
+            <div className='w-full h-full pt-12'>
+              <Avatar background={(state as UserProfile).background} skin={(state as UserProfile).skin} nickname={(state as UserProfile).nickname} />
+            </div>
           </div>
           <SmoothScroll loading={loading}>
           <div className='p-5 md:w-1/2'>
-            <div className='mt-[30vh] s:mt-[50vh] md:mt-0 h-full'>
+            <div className='mt-[30vh] s:mt-[50vh] md:pt-12 md:mt-0 h-full'>
               <div className='flex flex-col gap-4 items-center'>
                 <label htmlFor='nickname-input'>Nickname</label>
                 <TextInput id='nickname-input' value={(state as UserProfile).nickname} onChangeFunc={manageNicknameInputChange} />
