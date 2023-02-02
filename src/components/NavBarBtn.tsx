@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react'
-
 type Props = {
   icon: string,
   text: string,
@@ -8,10 +6,6 @@ type Props = {
 }
 
 export default function NavBarBtn({ icon, text, path, navigate }: Props) {
-  useEffect(() => {
-    console.log(window.location.pathname, path)
-  })
-
   return (
     <div className='h-full flex-1 flex justify-center items-center'>
       <div className='h-4/5 w-[90%] max-s:h-2/3 hover:w-full transition-all cursor-pointer flex' role='navigation' onClick={() => {navigate(path)}}>
