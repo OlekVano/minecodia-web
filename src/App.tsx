@@ -18,7 +18,7 @@ function App() {
   const [user] = useAuthState(auth)
   const navigate = useNavigate()
 
-  const asscroll = useRef<ASScroll>()
+  const asscrollRef = useRef<ASScroll>()
 
   function redirrectToSignIn() {
     navigate('/sign-in')
@@ -32,12 +32,12 @@ function App() {
         <Route path='*' element={<NavBar user={user} navigate={navigate} />} />
       </Routes>
       <Routes>
-        <Route index element={<HomePage loading={loading} navigate={navigate} asscroll={asscroll.current} />} />
+        <Route index element={<HomePage loading={loading} navigate={navigate} asscrollRef={asscrollRef} />} />
         <Route path='/sign-in' element={<SignInPage loading={loading} user={user} navigate={navigate} />} />
-        <Route path='/profile/:userId' element={<ProfilePage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} asscroll={asscroll.current} />} />
-        <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} asscroll={asscroll.current} />} />
-        <Route path='/create-post' element={<CreatePostPage loading={loading} user={user} navigate={navigate} asscroll={asscroll.current} />} />
-        <Route path='/posts/:postId' element={<PostPage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} asscroll={asscroll.current} />} />
+        <Route path='/profile/:userId' element={<ProfilePage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} asscrollRef={asscrollRef} />} />
+        <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
+        <Route path='/create-post' element={<CreatePostPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
+        <Route path='/posts/:postId' element={<PostPage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} asscrollRef={asscrollRef} />} />
       </Routes>
     </div>
   )

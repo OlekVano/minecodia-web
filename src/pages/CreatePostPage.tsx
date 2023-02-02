@@ -1,6 +1,6 @@
 import ASScroll from '@ashthornton/asscroll'
 import { User } from 'firebase/auth'
-import { useState } from 'react'
+import { MutableRefObject, useState } from 'react'
 import { Button } from '../components/Button'
 import SmoothScroll from '../components/SmoothScroll'
 import TextAreaInput from '../components/TextAreaInput'
@@ -10,10 +10,10 @@ type Props = {
   loading: boolean,
   user: User | null | undefined,
   navigate: Function,
-  asscroll: ASScroll | undefined
+  asscrollRef: MutableRefObject<ASScroll | undefined>
 }
 
-export default function CreatePostPage({ loading, user, navigate, asscroll }: Props) {
+export default function CreatePostPage({ loading, user, navigate, asscrollRef }: Props) {
   const [postTitle, setPostTitle] = useState('')
   const [postContent, setPostContent] = useState('')
   const [postImage, setPostImage] = useState('')
@@ -77,10 +77,10 @@ export default function CreatePostPage({ loading, user, navigate, asscroll }: Pr
 
   return (
     <>
-      <div className='fixed overflow-x-hidden h-screen w-full'>
+      <div className='fixed overflow-x-hidden h-screen w-full -z-50'>
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>
-      <SmoothScroll loading={loading} asscroll={asscroll}>
+      <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
         <div className='flex flex-col items-center p-4 pt-16 max-w-2xl mx-auto gap-6'>
           <h1 className='text-3xl'>Create a post</h1>
           <div className='w-full flex flex-col items-center gap-2'>

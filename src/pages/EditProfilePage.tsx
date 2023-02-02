@@ -2,7 +2,7 @@ import SmoothScroll from '../components/SmoothScroll'
 import { User as AuthUser } from 'firebase/auth'
 import { NavigateFunction } from 'react-router-dom'
 import Avatar from '../components/Avatar'
-import { useEffect, useState } from 'react'
+import { MutableRefObject, useEffect, useState } from 'react'
 import { fetchUserById } from '../utils'
 import { Button } from '../components/Button'
 import { UserProfile } from '../types'
@@ -14,10 +14,10 @@ type Props = {
   loading: boolean,
   user: AuthUser | undefined | null,
   navigate: NavigateFunction,
-  asscroll: ASScroll | undefined
+  asscrollRef: MutableRefObject<ASScroll | undefined>
 }
 
-export default function EditProfilePage({ loading, user, navigate, asscroll }: Props) {
+export default function EditProfilePage({ loading, user, navigate, asscrollRef }: Props) {
   const [skins, setSkins] = useState<string[]>([])
   const [backgrounds, setBackgrounds] = useState<string[]>([])
   const [state, setState] = useState<UserProfile | {}>({})
@@ -155,7 +155,7 @@ export default function EditProfilePage({ loading, user, navigate, asscroll }: P
 
   return (
     <>
-      <div className='fixed overflow-x-hidden h-screen w-full'>
+      <div className='fixed overflow-x-hidden h-screen w-full -z-50'>
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>
       {
@@ -166,7 +166,7 @@ export default function EditProfilePage({ loading, user, navigate, asscroll }: P
               <Avatar background={(state as UserProfile).background} skin={(state as UserProfile).skin} nickname={(state as UserProfile).nickname} />
             </div>
           </div>
-          <SmoothScroll loading={loading} asscroll={asscroll}>
+          <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
           <div className='p-5 md:w-1/2'>
             <div className='mt-[30vh] s:mt-[50vh] md:pt-12 md:mt-0 h-full'>
               <div className='flex flex-col gap-4 items-center'>

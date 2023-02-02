@@ -2,7 +2,7 @@ import SmoothScroll from '../components/SmoothScroll'
 import { User as AuthUser } from 'firebase/auth'
 import { Navigate, NavigateFunction, useParams } from 'react-router-dom'
 import Avatar from '../components/Avatar'
-import { useEffect, useState } from 'react'
+import { MutableRefObject, useEffect, useState } from 'react'
 import { UserProfile } from '../types'
 import { fetchUserById } from '../utils'
 import ASScroll from '@ashthornton/asscroll'
@@ -14,10 +14,10 @@ type Props = {
   user: AuthUser | undefined | null,
   navigate: NavigateFunction,
   redirrectToSignIn: Function,
-  asscroll: ASScroll | undefined
+  asscrollRef: MutableRefObject<ASScroll | undefined>
 }
 
-export default function ProfilePage({ loading, user, navigate, redirrectToSignIn, asscroll }: Props) {
+export default function ProfilePage({ loading, user, navigate, redirrectToSignIn, asscrollRef }: Props) {
   const { userId } = useParams()
   const [profile, setProfile] = useState<UserProfile | undefined>()
   const [fetching, setFetching] = useState(true)
@@ -37,7 +37,7 @@ export default function ProfilePage({ loading, user, navigate, redirrectToSignIn
 
   return (
     <>
-      <div className='fixed overflow-x-hidden h-screen w-full'>
+      <div className='fixed overflow-x-hidden h-screen w-full -z-50'>
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>
       {
@@ -48,7 +48,7 @@ export default function ProfilePage({ loading, user, navigate, redirrectToSignIn
             <Avatar background={profile.background} skin={profile.skin} nickname={profile.nickname} />
           </div>
         </div>
-        <SmoothScroll loading={loading} asscroll={asscroll}>
+        <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
           <div className='p-5 md:w-1/2 min-h-screen flex flex-col'>
             <div className='mt-[30vh] s:mt-[50vh] md:pt-12 md:mt-0 break-words'>
               {profile.description}
@@ -61,7 +61,7 @@ export default function ProfilePage({ loading, user, navigate, redirrectToSignIn
               {
                 user?.uid === userId ?
                 <div className='mt-8'>
-                  <Button text='Edit Profile' />
+                  <Button text='Edit Profile' func={() => navigate('/edit-profile')} />
                 </div>
                 : null
               }

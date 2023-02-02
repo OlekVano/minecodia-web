@@ -1,21 +1,22 @@
 import ASScroll from '@ashthornton/asscroll'
-import { ReactNode, useEffect } from 'react'
+import { MutableRefObject, ReactNode, useEffect } from 'react'
 
 type Props = {
   loading: boolean,
   children: ReactNode,
-  asscroll: ASScroll | undefined
+  asscrollRef: MutableRefObject<ASScroll | undefined>
 }
 
-export default function SmoothScroll({ loading, children, asscroll }: Props) {
+export default function SmoothScroll({ loading, children, asscrollRef }: Props) {
   useEffect(() => {
     if (loading) return
-    if (!asscroll) {
-      asscroll = new ASScroll()
+    if (!asscrollRef.current) {
+      console.log('CREATE NEW ASSCROLL')
+      asscrollRef.current = new ASScroll()
     }
-    asscroll.enable()
+    asscrollRef.current.enable()
     return () => {
-      asscroll?.disable()
+      asscrollRef.current?.disable()
     }
   }, [loading])
 

@@ -5,18 +5,19 @@ import { NavigateFunction, useNavigate } from 'react-router-dom'
 
 import SmoothScroll from '../components/SmoothScroll'
 import ASScroll from '@ashthornton/asscroll'
+import { MutableRefObject } from 'react'
 
 type Props = {
   loading: boolean,
   navigate: NavigateFunction,
-  asscroll: ASScroll | undefined
+  asscrollRef: MutableRefObject<ASScroll | undefined>
 }
 
-export default function HomePage({ loading, navigate, asscroll }: Props) {
+export default function HomePage({ loading, navigate, asscrollRef }: Props) {
   return (
     <>
       <PanoramaBackground bgImage='images/panorama-bg.jpg' />
-      <SmoothScroll loading={loading} asscroll={asscroll}>
+      <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
         <div className={`flex flex-col justify-evenly items-center transition-duration-opacity-1 min-h-screen delay-1000 ${loading ? 'opacity-0': ''}`}>
           <div className='w-full sm:w-2/3 lg:w-1/2 relative select-none'>
             <img src='/images/logo.png'></img>
