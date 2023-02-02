@@ -10,7 +10,6 @@ import { auth } from './firebase-setup'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import PostPage from './pages/PostPage'
 import NavBar from './components/NavBar'
-import { useLocation } from 'react-router-dom'
 
 import ASScroll from '@ashthornton/asscroll'
 
@@ -18,7 +17,6 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [user] = useAuthState(auth)
   const navigate = useNavigate()
-  const location = useLocation()
 
   const asscroll = useRef<ASScroll>()
 
