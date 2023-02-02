@@ -21,7 +21,7 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
   const [state, setState] = useState<UserProfile | {}>({})
 
   const maxNicknameLen = 15
-  const maxDescriptionLen = 100
+  const maxDescriptionLen = 2500
   const maxImageWidth = 1000
   const maxImageHeight = 1000
 
@@ -93,10 +93,11 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
     fileReader.onload = () => {
       const image = new Image()
       image.onload = () => {
-        if (image.width > maxImageWidth || image.height > maxImageHeight) {
-          alert(`Bad background size: ${image.width}x${image.height}\nBackgrounds must be at maximum ${maxImageWidth}x${maxImageHeight} pixels`)
-        }
-        else setBackground(fileReader.result as string)
+        // if (image.width > maxImageWidth || image.height > maxImageHeight) {
+        //   alert(`Bad background size: ${image.width}x${image.height}\nBackgrounds must be at maximum ${maxImageWidth}x${maxImageHeight} pixels`)
+        // }
+        // else setBackground(fileReader.result as string)
+        setBackground(fileReader.result as string)
       }
       // The line below calls image.onload
       image.src = fileReader.result as string
