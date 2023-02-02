@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 import { UserProfile } from '../types'
 import { fetchUserById } from '../utils'
 import ASScroll from '@ashthornton/asscroll'
+import { Button } from '../components/Button'
+import Button2 from '../components/Button2'
 
 type Props = {
   loading: boolean,
@@ -19,6 +21,8 @@ export default function ProfilePage({ loading, user, navigate, redirrectToSignIn
   const { userId } = useParams()
   const [profile, setProfile] = useState<UserProfile | undefined>()
   const [fetching, setFetching] = useState(true)
+  const [reported, setReported] = useState(false)
+  const [liked, setLiked] = useState(false)
 
   async function fetchProfile() {
     const profile = await fetchUserById(userId as string, user as AuthUser)
@@ -45,11 +49,24 @@ export default function ProfilePage({ loading, user, navigate, redirrectToSignIn
           </div>
         </div>
         <SmoothScroll loading={loading} asscroll={asscroll}>
-        <div className='p-5 md:w-1/2'>
-          <div className='mt-[30vh] s:mt-[50vh] md:pt-12 md:mt-0 break-words'>
-            {profile.description}
+          <div className='p-5 md:w-1/2 min-h-screen flex flex-col'>
+            <div className='mt-[30vh] s:mt-[50vh] md:pt-12 md:mt-0 break-words'>
+              {profile.description}
+            </div>
+            <div className='w-full mt-auto flex flex-col items-center'>
+              <div className='flex w-full h-12'>
+                <Button2 highlight={liked} icon='/images/diamond.webp' text='888 Likes' func={() => setLiked(!liked)} />
+                <Button2 highlight={reported} icon='/images/barrier.webp' text='Report' func={() => setReported(!reported)} />
+              </div>
+              {
+                user?.uid === userId ?
+                <div className='mt-8'>
+                  <Button text='Edit Profile' />
+                </div>
+                : null
+              }
+            </div>
           </div>
-        </div>
         </SmoothScroll>
       </div>
       : !profile && !fetching && user?.uid === userId ?
