@@ -5,15 +5,17 @@ import Avatar from '../components/Avatar'
 import { useEffect, useState } from 'react'
 import { UserProfile } from '../types'
 import { fetchUserById } from '../utils'
+import ASScroll from '@ashthornton/asscroll'
 
 type Props = {
   loading: boolean,
   user: AuthUser | undefined | null,
   navigate: NavigateFunction,
-  redirrectToSignIn: Function
+  redirrectToSignIn: Function,
+  asscroll: ASScroll | undefined
 }
 
-export default function ProfilePage({ loading, user, navigate, redirrectToSignIn }: Props) {
+export default function ProfilePage({ loading, user, navigate, redirrectToSignIn, asscroll }: Props) {
   const { userId } = useParams()
   const [profile, setProfile] = useState<UserProfile | undefined>()
   const [fetching, setFetching] = useState(true)
@@ -42,7 +44,7 @@ export default function ProfilePage({ loading, user, navigate, redirrectToSignIn
             <Avatar background={profile.background} skin={profile.skin} nickname={profile.nickname} />
           </div>
         </div>
-        <SmoothScroll loading={loading}>
+        <SmoothScroll loading={loading} asscroll={asscroll}>
         <div className='p-5 md:w-1/2'>
           <div className='mt-[30vh] s:mt-[50vh] md:pt-12 md:mt-0 break-words'>
             {profile.description}

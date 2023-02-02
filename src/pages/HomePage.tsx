@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react'
 import { Button } from '../components/Button'
 import PanoramaBackground from '../components/PanoramaBackground'
 import SplashText from '../components/SplashText'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
-import { getRandArrItem } from '../utils'
 
 import SmoothScroll from '../components/SmoothScroll'
+import ASScroll from '@ashthornton/asscroll'
 
 type Props = {
   loading: boolean,
-  navigate: NavigateFunction
+  navigate: NavigateFunction,
+  asscroll: ASScroll | undefined
 }
 
-export default function HomePage({ loading, navigate }: Props) {
+export default function HomePage({ loading, navigate, asscroll }: Props) {
   return (
     <>
       <PanoramaBackground bgImage='images/panorama-bg.jpg' />
-      <SmoothScroll loading={loading}>
+      <SmoothScroll loading={loading} asscroll={asscroll}>
         <div className={`flex flex-col justify-evenly items-center transition-duration-opacity-1 min-h-screen delay-1000 ${loading ? 'opacity-0': ''}`}>
           <div className='w-full sm:w-2/3 lg:w-1/2 relative select-none'>
             <img src='/images/logo.png'></img>

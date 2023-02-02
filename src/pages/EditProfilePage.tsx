@@ -8,14 +8,16 @@ import { Button } from '../components/Button'
 import { UserProfile } from '../types'
 import TextInput from '../components/TextInput'
 import TextAreaInput from '../components/TextAreaInput'
+import ASScroll from '@ashthornton/asscroll'
 
 type Props = {
   loading: boolean,
   user: AuthUser | undefined | null,
   navigate: NavigateFunction,
+  asscroll: ASScroll | undefined
 }
 
-export default function EditProfilePage({ loading, user, navigate }: Props) {
+export default function EditProfilePage({ loading, user, navigate, asscroll }: Props) {
   const [skins, setSkins] = useState<string[]>([])
   const [backgrounds, setBackgrounds] = useState<string[]>([])
   const [state, setState] = useState<UserProfile | {}>({})
@@ -164,7 +166,7 @@ export default function EditProfilePage({ loading, user, navigate }: Props) {
               <Avatar background={(state as UserProfile).background} skin={(state as UserProfile).skin} nickname={(state as UserProfile).nickname} />
             </div>
           </div>
-          <SmoothScroll loading={loading}>
+          <SmoothScroll loading={loading} asscroll={asscroll}>
           <div className='p-5 md:w-1/2'>
             <div className='mt-[30vh] s:mt-[50vh] md:pt-12 md:mt-0 h-full'>
               <div className='flex flex-col gap-4 items-center'>

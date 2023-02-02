@@ -3,17 +3,19 @@ import { ReactNode, useEffect } from 'react'
 
 type Props = {
   loading: boolean,
-  children: ReactNode
+  children: ReactNode,
+  asscroll: ASScroll | undefined
 }
 
-export default function SmoothScroll({ loading, children }: Props) {
+export default function SmoothScroll({ loading, children, asscroll }: Props) {
   useEffect(() => {
     if (loading) return
-
-    const asscroll = new ASScroll()
+    if (!asscroll) {
+      asscroll = new ASScroll()
+    }
     asscroll.enable()
     return () => {
-      asscroll.disable()
+      asscroll?.disable()
     }
   }, [loading])
 

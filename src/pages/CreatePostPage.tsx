@@ -1,3 +1,4 @@
+import ASScroll from '@ashthornton/asscroll'
 import { User } from 'firebase/auth'
 import { useState } from 'react'
 import { Button } from '../components/Button'
@@ -8,10 +9,11 @@ import TextInput from '../components/TextInput'
 type Props = {
   loading: boolean,
   user: User | null | undefined,
-  navigate: Function
+  navigate: Function,
+  asscroll: ASScroll | undefined
 }
 
-export default function CreatePostPage({ loading, user, navigate }: Props) {
+export default function CreatePostPage({ loading, user, navigate, asscroll }: Props) {
   const [postTitle, setPostTitle] = useState('')
   const [postContent, setPostContent] = useState('')
   const [postImage, setPostImage] = useState('')
@@ -78,7 +80,7 @@ export default function CreatePostPage({ loading, user, navigate }: Props) {
       <div className='fixed overflow-x-hidden h-screen w-full'>
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>
-      <SmoothScroll loading={loading}>
+      <SmoothScroll loading={loading} asscroll={asscroll}>
         <div className='flex flex-col items-center p-4 pt-16 max-w-2xl mx-auto gap-6'>
           <h1 className='text-3xl'>Create a post</h1>
           <div className='w-full flex flex-col items-center gap-2'>
