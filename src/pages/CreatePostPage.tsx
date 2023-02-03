@@ -87,7 +87,7 @@ export default function CreatePostPage({ loading, user, navigate, asscrollRef }:
             <label htmlFor='title-input' className='text-xl'>Title</label>
             <TextInput id='title-input' value={postTitle} onChangeFunc={manageTitleInputChange} />
           </div>
-          <div className='w-full flex flex-wrap justify-around gap-2'>
+          <div className='w-full flex flex-wrap justify-around items-center gap-2 min-h-[120px]'>
             <Button text='Upload Image' func={() => document.getElementById('image-upload')?.click()} />
             <input id='image-upload' onChange={uploadImage} type='file' className='hidden' />
             {

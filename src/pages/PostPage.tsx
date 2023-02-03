@@ -45,8 +45,8 @@ export default function PostPage({ loading, user, navigate, redirrectToSignIn, a
             {
               post.image ? <div className='w-full p-4'><img className='w-full' src={post.image} /></div> : <></>
             }
-            <div className='break-words'>
-              {post.content}
+            <div className='break-words whitespace-pre-line'>
+              {post.content.trim()}
             </div>
           </div>
           </div>

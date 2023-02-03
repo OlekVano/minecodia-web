@@ -161,32 +161,34 @@ export default function EditProfilePage({ loading, user, navigate, asscrollRef }
       {
         Object.keys(state).length === 0 ? <></> :
         <div className={`transition-duration-opacity-1 delay-1000 ${loading ? 'opacity-0' : ''}`}>
-          <div className='fixed w-full h-[30vh] s:h-[50vh] md:h-screen md:w-1/2 md:right-0 z-10'>
+          <div className='fixed w-full h-[50vh] md:h-screen md:w-1/2 md:right-0 z-10'>
             <div className='w-full h-full pt-12'>
               <Avatar background={(state as UserProfile).background} skin={(state as UserProfile).skin} nickname={(state as UserProfile).nickname} />
             </div>
           </div>
           <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
-          <div className='p-5 md:w-1/2'>
-            <div className='mt-[30vh] s:mt-[50vh] md:pt-12 md:mt-0 h-full'>
-              <div className='flex flex-col gap-4 items-center'>
-                <label htmlFor='nickname-input'>Nickname</label>
-                <TextInput id='nickname-input' value={(state as UserProfile).nickname} onChangeFunc={manageNicknameInputChange} />
-                <div className='gap-4 flex flex-wrap justify-center max-w-full'>
-                  <Button text='Change Skin' func={changeSkin} />
-                  <Button text='Upload Skin' func={() => document.getElementById('skin-upload')?.click()} />
-                  <input id='skin-upload' onChange={uploadSkin} type='file' className='hidden' />
-                  <Button text='Change Background' func={changeBackground} />
-                  <Button text='Upload Background' func={() => document.getElementById('background-upload')?.click()} />
-                  <input id='background-upload' onChange={uploadBackground} type='file' className='hidden' />
-                </div>
+            <div className='p-5 md:w-1/2'>
+              <div className='mt-[50vh] md:pt-12 md:mt-0 h-full'>
+                <div className='flex flex-col gap-4 items-center'>
+                  <label htmlFor='nickname-input'>Nickname</label>
+                  <TextInput id='nickname-input' value={(state as UserProfile).nickname} onChangeFunc={manageNicknameInputChange} />
+                  <div className='gap-4 flex flex-wrap justify-center max-w-full'>
+                    <Button text='Change Skin' func={changeSkin} />
+                    <Button text='Upload Skin' func={() => document.getElementById('skin-upload')?.click()} />
+                    <input id='skin-upload' onChange={uploadSkin} type='file' className='hidden' />
+                    <Button text='Change Background' func={changeBackground} />
+                    <Button text='Upload Background' func={() => document.getElementById('background-upload')?.click()} />
+                    <input id='background-upload' onChange={uploadBackground} type='file' className='hidden' />
+                  </div>
 
-                <label htmlFor='description-input'>Description</label>
-                <TextAreaInput id='description-input' onChangeFunc={manageDescriptionInputChange} value={(state as UserProfile).description} />
-                <Button text='Save' func={saveChanges} />
+                  <label htmlFor='description-input'>Description</label>
+                  <TextAreaInput id='description-input' onChangeFunc={manageDescriptionInputChange} value={(state as UserProfile).description} />
+                  <div className='max-w-full justify-center flex'>
+                    <Button text='Save' func={saveChanges} />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
           </SmoothScroll>
         </div>
       }

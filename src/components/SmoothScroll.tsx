@@ -22,12 +22,9 @@ export default function SmoothScroll({ loading, children, asscrollRef }: Props) 
       // Needed in order to fix a bug with a jumping scrollbar
       asscrollRef.current.controller.scrollbar.transform()
     }
-
-    console.log(asscrollRef.current?.controller)
     
     return () => {
       asscrollRef.current?.disable()
-      console.log('disable')
     }
   }, [loading])
 
