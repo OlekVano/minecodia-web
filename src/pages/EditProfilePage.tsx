@@ -9,6 +9,7 @@ import { UserProfile } from '../types'
 import TextInput from '../components/TextInput'
 import TextAreaInput from '../components/TextAreaInput'
 import ASScroll from '@ashthornton/asscroll'
+import RequireSignIn from '../components/RequireSignIn'
 
 type Props = {
   loading: boolean,
@@ -155,6 +156,7 @@ export default function EditProfilePage({ loading, user, navigate, asscrollRef }
 
   return (
     <>
+      <RequireSignIn loading={loading} user={user} />
       <div className='fixed overflow-x-hidden h-screen w-full -z-50'>
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>

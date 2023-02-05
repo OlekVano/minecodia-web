@@ -8,6 +8,7 @@ import { fetchUserById } from '../utils'
 import ASScroll from '@ashthornton/asscroll'
 import { Button } from '../components/Button'
 import Button2 from '../components/Button2'
+import RequireSignInAndProfile from '../components/RequireSignInAndProfile'
 
 type Props = {
   loading: boolean,
@@ -37,6 +38,7 @@ export default function ProfilePage({ loading, user, navigate, redirrectToSignIn
 
   return (
     <>
+      <RequireSignInAndProfile loading={loading} user={user} />
       <div className='fixed overflow-x-hidden h-screen w-full -z-50'>
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>

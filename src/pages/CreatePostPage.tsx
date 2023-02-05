@@ -2,6 +2,7 @@ import ASScroll from '@ashthornton/asscroll'
 import { User } from 'firebase/auth'
 import { MutableRefObject, useEffect, useState } from 'react'
 import { Button } from '../components/Button'
+import RequireSignInAndProfile from '../components/RequireSignInAndProfile'
 import SmoothScroll from '../components/SmoothScroll'
 import TextAreaInput from '../components/TextAreaInput'
 import TextInput from '../components/TextInput'
@@ -81,6 +82,7 @@ export default function CreatePostPage({ loading, user, navigate, asscrollRef }:
 
   return (
     <>
+      <RequireSignInAndProfile loading={loading} user={user} />
       <div className='fixed overflow-x-hidden h-screen w-full -z-50'>
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>
