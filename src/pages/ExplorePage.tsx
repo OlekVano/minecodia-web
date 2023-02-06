@@ -21,7 +21,7 @@ export default function ExplorePage({ loading, user, asscrollRef }: Props) {
     fetchPosts(user).then(posts => {
       setPosts(posts)
     })
-  }, [loading])
+  }, [loading, user])
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function ExplorePage({ loading, user, asscrollRef }: Props) {
         <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
       </div>
       <SmoothScroll loading={loading} asscrollRef={asscrollRef} >
-        <div className='max-w-2xl mx-auto min-h-[100vh]'>
+        <div className='max-w-2xl mx-auto min-h-[100vh] flex flex-col'>
           {
             posts.map((post, i) => {
               return <PostDisplay post={post} asscrollRef={asscrollRef} postId={post.id} user={user} key={i} />
