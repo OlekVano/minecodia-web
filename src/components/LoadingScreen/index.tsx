@@ -25,10 +25,12 @@ export default function LoadingScreen({ loading, setLoading }: Props) {
       for (let status of statuses) {
         setStatus(status)
         await sleep(500)
-        for (let n of Array(3)) {
-          setStatus(status => status + '.')
-          await sleep(500)
-        }
+        setStatus(status => status + '.')
+        await sleep(500)
+        setStatus(status => status + '.')
+        await sleep(500)
+        setStatus(status => status + '.')
+        await sleep(500)
       }
       setLoading(false)
 
@@ -36,6 +38,7 @@ export default function LoadingScreen({ loading, setLoading }: Props) {
       await sleep(1000)
       new Audio('/sounds/orb.mp3').play()
     })()
+  // eslint-disable-next-line
   }, [])
 
   return (
