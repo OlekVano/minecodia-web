@@ -6,7 +6,7 @@ import { MutableRefObject, useEffect, useState } from 'react'
 import { UserProfile } from '../types'
 import { fetchUserById } from '../utils'
 import ASScroll from '@ashthornton/asscroll'
-import { Button } from '../components/Button'
+import Button from '../components/Button'
 import Button2 from '../components/Button2'
 import RequireSignInAndProfile from '../components/RequireSignInAndProfile'
 

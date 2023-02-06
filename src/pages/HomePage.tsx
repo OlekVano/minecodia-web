@@ -1,4 +1,4 @@
-import { Button } from '../components/Button'
+import Button from '../components/Button'
 import PanoramaBackground from '../components/PanoramaBackground'
 import SplashText from '../components/SplashText'
 import { NavigateFunction, useNavigate } from 'react-router-dom'

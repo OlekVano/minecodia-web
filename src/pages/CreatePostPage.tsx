@@ -1,7 +1,7 @@
 import ASScroll from '@ashthornton/asscroll'
 import { User } from 'firebase/auth'
 import { MutableRefObject, useEffect, useState } from 'react'
-import { Button } from '../components/Button'
+import Button from '../components/Button'
 import RequireSignInAndProfile from '../components/RequireSignInAndProfile'
 import SmoothScroll from '../components/SmoothScroll'
 import TextAreaInput from '../components/TextAreaInput'

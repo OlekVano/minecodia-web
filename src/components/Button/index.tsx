@@ -7,7 +7,7 @@ type Props = {
   func?: Function
 }
 
-export const Button = ({ text='', func=()=>{} }: Props) => {
+export default function Button ({ text='', func=()=>{} }: Props) {
   function onClick() {
     new Audio('sounds/click.mp3').play()
     func()

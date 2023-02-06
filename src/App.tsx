@@ -10,6 +10,7 @@ import { auth } from './firebase-setup'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import PostPage from './pages/PostPage'
 import NavBar from './components/NavBar'
+import ExplorePage from './pages/ExplorePage'
 
 import ASScroll from '@ashthornton/asscroll'
 
@@ -38,6 +39,7 @@ function App() {
         <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
         <Route path='/create-post' element={<CreatePostPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
         <Route path='/posts/:postId' element={<PostPage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} asscrollRef={asscrollRef} />} />
+        <Route path='/explore' element={<ExplorePage loading={loading} user={user} asscrollRef={asscrollRef} />} />
       </Routes>
     </div>
   )

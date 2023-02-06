@@ -1,4 +1,4 @@
-import { Button } from '../components/Button'
+import Button from '../components/Button'
 import { auth } from '../firebase-setup'
 import { Auth, GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/auth'
 import { NavigateFunction } from 'react-router-dom'
