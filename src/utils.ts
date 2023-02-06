@@ -33,6 +33,5 @@ export async function fetchPosts(user: AuthUser): Promise<(Post & {id: string})[
   const res = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {headers: new Headers({'Authorization': `Bearer ${token}`})})
   if (res.status !== 200) return []
   const json = await res.json()
-  console.log(json)
   return json
 }

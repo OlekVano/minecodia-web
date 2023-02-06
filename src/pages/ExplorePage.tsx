@@ -19,7 +19,6 @@ export default function ExplorePage({ loading, user, asscrollRef }: Props) {
   useEffect(() => {
     if (!user || loading) return
     fetchPosts(user).then(posts => {
-      console.log(posts)
       setPosts(posts)
     })
   }, [loading])

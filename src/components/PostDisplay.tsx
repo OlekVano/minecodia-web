@@ -28,10 +28,6 @@ export default function PostDisplay({ post, asscrollRef, user, postId }: Props) 
     }
   }
 
-  useEffect(() => {
-    console.log(post)
-  }, [])
-
   return (
     <div className='p-5 pt-16 flex flex-col justify-evenly gap-8 bg-black bg-opacity-50 w-full min-h-full'>
       <h1 className='text-3xl text-center break-words'>{post.title}</h1>
