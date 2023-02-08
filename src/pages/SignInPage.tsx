@@ -1,6 +1,6 @@
 import Button from '../components/Button'
 import { auth } from '../firebase-setup'
-import { Auth, GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/auth'
 import { NavigateFunction } from 'react-router-dom'
 import { fetchUserById } from '../utils'
 

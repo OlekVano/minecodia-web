@@ -25,8 +25,8 @@ export default function EditProfilePage({ loading, user, navigate, asscrollRef }
 
   const maxNicknameLen = 15
   const maxDescriptionLen = 2500
-  const maxImageWidth = 1000
-  const maxImageHeight = 1000
+  // const maxImageWidth = 1000
+  // const maxImageHeight = 1000
 
   async function setDefaultSkins() {
     fetch(`${process.env.REACT_APP_API_URL}/skins/default`).then(res => res.json()).then(json => setSkins(json))

@@ -45,7 +45,7 @@ export default function CreatePostPage({ loading, user, navigate, asscrollRef }:
       const image = new Image()
       image.onload = () => {
         if (image.width > maxImageWidth || image.height > maxImageHeight) {
-          alert(`Bad image size: ${image.width}x${image.height}\Images must be at maximum ${maxImageWidth}x${maxImageHeight} pixels`)
+          alert(`Bad image size: ${image.width}x${image.height}\nImages must be at maximum ${maxImageWidth}x${maxImageHeight} pixels`)
         }
         else setPostImage(fileReader.result as string)
       }

@@ -1,6 +1,6 @@
 import ASScroll from '@ashthornton/asscroll'
 import { User } from 'firebase/auth'
-import { MutableRefObject, useEffect, useState } from 'react'
+import { MutableRefObject, useState } from 'react'
 import { Post } from '../types'
 import Button2 from './Button2'
 
@@ -32,7 +32,7 @@ export default function PostDisplay({ post, asscrollRef, user, postId }: Props) 
     <div className='p-5 pt-16 flex flex-col justify-evenly gap-8 bg-black bg-opacity-50 w-full min-h-full'>
       <h1 className='text-3xl text-center break-words'>{post.title}</h1>
       {
-        post.image ? <div className='w-full px-4'><img className='w-full' src={post.image} onLoad={() => asscrollRef.current?.resize()} /></div> : <></>
+        post.image ? <div className='w-full px-4'><img alt='' className='w-full' src={post.image} onLoad={() => asscrollRef.current?.resize()} /></div> : <></>
       }
       {
         post.content ? <div className='break-words whitespace-pre-line'>{post.content.trim()}</div> : <></>
