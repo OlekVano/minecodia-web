@@ -6,10 +6,12 @@ export type UserProfile = {
 }
 
 export type Post = {
+  id: string,
   title: string,
   image: string,
   content: string,
   authorId: string,
   likes: number,
-  liked: boolean
+  liked: boolean,
+  author: UserProfile
 }
