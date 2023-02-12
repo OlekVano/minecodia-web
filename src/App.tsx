@@ -32,6 +32,8 @@ function App() {
       </Routes>
       <Routes>
         <Route index element={null} />
+        { /* Hiden the navbar on the /sign-in page */}
+        <Route path='/sign-in' element={null} />
         <Route path='*' element={<NavBar user={user} navigate={navigate} />} />
       </Routes>
       <Routes>
