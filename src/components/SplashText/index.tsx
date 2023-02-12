@@ -1,10 +1,14 @@
 // Splash Text
 
+import styles from './index.module.scss'
 import { useEffect, useState } from 'react'
 import { getRandArrItem } from '../../utils'
-import styles from './index.module.scss'
 
 export default function SplashText() {
+  const [text, setText] = useState('')
+
+  useEffect(setRandomSplashText, [])
+
   const texts = [
     '99% bug free',
     'Minecraft???',
@@ -12,13 +16,13 @@ export default function SplashText() {
     'Wake up, coffee, code, faint, repeat'
   ]
 
-  const [text, setText] = useState('')
-
-  useEffect(() => {
-    setText(getRandArrItem(texts))
-  }, [])
-
   return (
     <div className={`${styles.main} text-yellow-300 font-["minecraft"] -rotate-[15deg] text-sm text-center`}>{text}</div>
   )
+
+  // ********************************
+
+  function setRandomSplashText() {
+    setText(getRandArrItem(texts))
+  }
 }

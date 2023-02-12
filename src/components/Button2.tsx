@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react"
+import { MouseEventHandler } from 'react'
 
 type Props = {
   icon?: string,
@@ -7,7 +7,7 @@ type Props = {
   highlight?: boolean
 }
 
-export default function Button2({ icon='', text='', func=()=>{}, highlight=false }: Props) {
+export default function Button2({ icon='', text='', func=function() {}, highlight=false }: Props) {
   return (
     <div className='h-full flex-1 flex justify-center items-center select-none'>
       <div className={`h-4/5 w-[90%] max-s:h-2/3 hover:w-full transition-all cursor-pointer flex ${highlight ? 'outline-yellow-400 outline outline-2' : ''}`} role='navigation' onClick={func as MouseEventHandler}>

@@ -7,14 +7,9 @@ type Props = {
   func?: Function
 }
 
-export default function Button ({ text='', func=()=>{} }: Props) {
-  function onClick() {
-    new Audio('sounds/click.mp3').play()
-    func()
-  }
-
+export default function Button ({ text='', func=function() {} }: Props) {
   return (
-    <div role='button' className={styles.main} onClick={onClick}>
+    <div role='button' className={styles.main} onClick={onBtnClick}>
       <div className={styles.textWrapper}>
         <div className={styles.text}>
           {text}
@@ -22,4 +17,11 @@ export default function Button ({ text='', func=()=>{} }: Props) {
       </div>
     </div>
   )
+
+  // ****************************
+
+  function onBtnClick() {
+    new Audio('sounds/click.mp3').play()
+    func()
+  }
 }

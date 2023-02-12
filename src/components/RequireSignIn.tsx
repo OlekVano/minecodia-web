@@ -7,6 +7,7 @@ type Props = {
 }
 
 export default function RequireSignIn({ user, loading }: Props) {
+  // If not signed in
   if (!user && !loading) return <Navigate to='/sign-in' />
-  return <></>
+  return null
 }
