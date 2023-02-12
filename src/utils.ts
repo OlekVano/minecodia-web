@@ -1,6 +1,7 @@
 import { Post, UserProfile } from './types'
 
 import { User as AuthUser } from 'firebase/auth'
+import { v4 } from 'uuid'
 
 export function getRandNum(max: number): number {
   return Math.floor(Math.random() * max)
@@ -16,7 +17,7 @@ export function sleep(ms: number): Promise<void> {
 
 export async function fetchUserById(id: string, user: AuthUser): Promise<UserProfile | undefined> {
   const token = await user.getIdToken()
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, {headers: new Headers({'Authorization': `Bearer ${token}`})})
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/profiles/${id}`, {headers: new Headers({'Authorization': `Bearer ${token}`})})
   if (res.status !== 200) return undefined
   return await res.json()
 }
