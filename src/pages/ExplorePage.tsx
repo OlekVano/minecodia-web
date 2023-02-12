@@ -10,30 +10,39 @@ import { fetchPosts } from '../utils'
 type Props = {
   user: User | undefined | null,
   asscrollRef: MutableRefObject<ASScroll | undefined>,
-  loading: boolean
+  loading: boolean,
+  navigate: Function
 }
 
-export default function ExplorePage({ loading, user, asscrollRef }: Props) {
+export default function ExplorePage({ loading, user, asscrollRef, navigate }: Props) {
+  const [visible, setVisible] = useState(false)
   const [posts, setPosts] = useState<(Post & {id: string})[]>([])
 
-  useEffect(() => {
-    if (!user || loading) return
+  useEffect(function makeVisible() {
+    if (posts.length === 0 || loading) return
+    setVisible(true)
+  }, [posts, loading])
+
+  useEffect(function getPosts() {
+    if (!user) return
     fetchPosts(user).then(posts => {
       setPosts(posts)
     })
-  }, [loading, user])
+  }, [user])
 
   return (
     <>
       <RequireSignInAndProfile loading={loading} user={user} />
-      <div className='fixed overflow-x-hidden h-screen w-full -z-50'>
-        <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
-      </div>
       <SmoothScroll loading={loading} asscrollRef={asscrollRef} >
-        <div className='max-w-2xl mx-auto min-h-[100vh] flex flex-col'>
+        <div className={`max-w-2xl mx-auto min-h-[100vh] flex flex-col pt-12 transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
           {
             posts.map((post, i) => {
-              return <PostDisplay post={post} asscrollRef={asscrollRef} postId={post.id} user={user} key={i} />
+              return <div key={i}>
+                {
+                  i === 0 ? null : <div className='w-full h-14 bg-[url(../public/images/cobblestone.jpeg)] bg-contain opacity-80'></div>
+                }
+                <PostDisplay post={post} asscrollRef={asscrollRef} postId={post.id} user={user} navigate={navigate} />
+              </div> 
             })
           }
         </div>

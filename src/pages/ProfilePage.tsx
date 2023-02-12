@@ -14,37 +14,32 @@ type Props = {
   loading: boolean,
   user: AuthUser | undefined | null,
   navigate: NavigateFunction,
-  redirrectToSignIn: Function,
   asscrollRef: MutableRefObject<ASScroll | undefined>
 }
 
-export default function ProfilePage({ loading, user, navigate, redirrectToSignIn, asscrollRef }: Props) {
+export default function ProfilePage({ loading, user, navigate, asscrollRef }: Props) {
   const { userId } = useParams()
+
+  const [visible, setVisible] = useState(false)
   const [profile, setProfile] = useState<UserProfile | undefined>()
   const [fetching, setFetching] = useState(true)
   const [reported, setReported] = useState(false)
   const [liked, setLiked] = useState(false)
 
-  async function fetchProfile() {
-    const profile = await fetchUserById(userId as string, user as AuthUser)
-    setProfile(profile)
-    setFetching(false)
-  }
+  useEffect(function makeVisible() {
+    if (!fetching && !loading) setVisible(true)
+  }, [fetching, loading])
 
   useEffect(() => {
-    if (loading) return
-    fetchProfile()
-  }, [loading])
+    if (user) fetchProfile()
+  }, [user])
 
   return (
     <>
       <RequireSignInAndProfile loading={loading} user={user} />
-      <div className='fixed overflow-x-hidden h-screen w-full -z-50'>
-        <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
-      </div>
       {
       profile ?
-      <div className={`transition-duration-opacity-1 delay-1000 ${loading ? 'opacity-0' : ''}`}>
+      <div className={`transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
         <div className='fixed w-full h-[50vh] md:h-screen md:w-1/2 md:right-0 z-10'>
           <div className='w-full h-full pt-12'>
             <Avatar background={profile.background} skin={profile.skin} nickname={profile.nickname} />
@@ -79,9 +74,17 @@ export default function ProfilePage({ loading, user, navigate, redirrectToSignIn
           User not found
         </div>
       </div>
-      : <></>
+      : null
       }
 
     </>
   )
+
+  // *************************
+
+  async function fetchProfile() {
+    const profile = await fetchUserById(userId as string, user as AuthUser)
+    setProfile(profile)
+    setFetching(false)
+  }
 }

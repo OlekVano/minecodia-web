@@ -13,6 +13,8 @@ import NavBar from './components/NavBar'
 import ExplorePage from './pages/ExplorePage'
 
 import ASScroll from '@ashthornton/asscroll'
+import PanoramaBackground from './components/PanoramaBackground'
+import DirtBackground from './components/DirtBackground'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -21,25 +23,25 @@ function App() {
 
   const asscrollRef = useRef<ASScroll>()
 
-  function redirrectToSignIn() {
-    navigate('/sign-in')
-  }
-
   return (
     <div className='App w-full overflow-hidden max-h-screen'>
       <LoadingScreen loading={loading} setLoading={setLoading} />
+      <Routes>
+        <Route index element={<PanoramaBackground bgImage='/images/panorama-bg.jpg' />} />
+        <Route path='*' element={<DirtBackground />} />
+      </Routes>
       <Routes>
         <Route index element={null} />
         <Route path='*' element={<NavBar user={user} navigate={navigate} />} />
       </Routes>
       <Routes>
         <Route index element={<HomePage loading={loading} navigate={navigate} asscrollRef={asscrollRef} />} />
-        <Route path='/sign-in' element={<SignInPage loading={loading} user={user} navigate={navigate} />} />
-        <Route path='/profile/:userId' element={<ProfilePage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} asscrollRef={asscrollRef} />} />
+        <Route path='/sign-in' element={<SignInPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
+        <Route path='/profile/:userId' element={<ProfilePage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
         <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
         <Route path='/create-post' element={<CreatePostPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
-        <Route path='/posts/:postId' element={<PostPage loading={loading} user={user} navigate={navigate} redirrectToSignIn={redirrectToSignIn} asscrollRef={asscrollRef} />} />
-        <Route path='/explore' element={<ExplorePage loading={loading} user={user} asscrollRef={asscrollRef} />} />
+        <Route path='/posts/:postId' element={<PostPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
+        <Route path='/explore' element={<ExplorePage loading={loading} user={user} asscrollRef={asscrollRef} navigate={navigate} />} />
       </Routes>
     </div>
   )

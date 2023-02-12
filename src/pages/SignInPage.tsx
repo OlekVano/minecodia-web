@@ -1,16 +1,50 @@
 import Button from '../components/Button'
 import { auth } from '../firebase-setup'
-import { Auth, GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/auth'
 import { NavigateFunction } from 'react-router-dom'
 import { fetchUserById } from '../utils'
+import { MutableRefObject, useEffect, useState } from 'react'
+import SmoothScroll from '../components/SmoothScroll'
+import ASScroll from '@ashthornton/asscroll'
 
 type Props = {
   loading: boolean,
   user: User | undefined | null,
   navigate: NavigateFunction,
+  asscrollRef:  MutableRefObject<ASScroll | undefined>
 }
 
-export default function SignInPage({ loading, user, navigate }: Props) {
+export default function SignInPage({ loading, user, navigate, asscrollRef }: Props) {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(function makeVisible() {
+    if (!loading) setVisible(true)
+  }, [loading])
+
+  return (
+    <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
+    <div className={`w-full h-screen grid place-items-center transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
+      <div className={`m-auto gap-10 flex flex-wrap justify-center`}>
+        {
+          user ?
+          <>
+            <div className='w-full text-center  text-white' style={{wordSpacing: '3.5px'}}>You are signed in</div>
+            <Button text='Explore' func={function navigateToExplorePage() {navigate('/explore')}} />
+            <Button text='Sign Out' func={function triggerSignOut() {signOut(auth)}} />
+          </>
+          :
+          <>
+            <div className='w-full text-center  text-white' style={{wordSpacing: '3.5px'}}>Only authenticated users can use this application</div>
+            <Button text='Sign In' func={signIn} />
+          </>
+        }
+      </div>
+    </div>
+    </SmoothScroll>
+  )
+
+  // **************************************
+
   function signIn() {
     const provider = new GoogleAuthProvider()
     
@@ -37,24 +71,4 @@ export default function SignInPage({ loading, user, navigate }: Props) {
       // ...
     // })
   }
-
-  return (
-    <div className='w-full h-screen bg-[url("../public/images/dirt-bg.webp")] font-["minecraft"] bg-cover bg-center grid place-items-center'>
-      <div className={`gap-10 flex transition-duration-opacity-1 delay-1000 flex-wrap justify-center ${loading ? 'opacity-0' : ''}`}>
-        {
-          user ?
-          <>
-            <div className='w-full text-center  text-white' style={{wordSpacing: '3.5px'}}>You are signed in</div>
-            <Button text='Explore' func={() => navigate('/explore')} />
-            <Button text='Sign Out' func={() => signOut(auth)} />
-          </>
-          :
-          <>
-            <div className='w-full text-center  text-white' style={{wordSpacing: '3.5px'}}>Only authenticated users can use this application</div>
-            <Button text='Sign In' func={signIn} />
-          </>
-        }
-      </div>
-    </div>
-  )
 }

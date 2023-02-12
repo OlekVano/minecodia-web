@@ -11,38 +11,33 @@ type Props = {
   loading: boolean,
   user: AuthUser | undefined | null,
   navigate: NavigateFunction,
-  redirrectToSignIn: Function,
   asscrollRef: MutableRefObject<ASScroll | undefined>
 }
 
-export default function PostPage({ loading, user, navigate, redirrectToSignIn, asscrollRef }: Props) {
+export default function PostPage({ loading, user, navigate, asscrollRef }: Props) {
   const { postId } = useParams()
+
+  const [visible, setVisible] = useState(false)
   const [post, setPost] = useState<Post | undefined>()
   const [fetching, setFetching] = useState(true)
-
-  async function fetchPost() {
-    const post = await fetchPostById(postId as string, user as AuthUser)
-    setPost(post)
-    setFetching(false)
-  }
   
   useEffect(() => {
-    if (loading) return
-    fetchPost()
-  }, [loading])
+    if (user) fetchPost()
+  }, [user])
+
+  useEffect(function makeVisible() {
+    if (!loading && !fetching) setVisible(true)
+  }, [loading, fetching])
 
   return (
     <>
-      <div className='fixed overflow-x-hidden h-screen w-full -z-50'>
-        <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
-      </div>
       {
       post ?
-      <div className={`transition-duration-opacity-1 delay-1000 ${loading ? 'opacity-0' : ''}`}>
+      <div className={`transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
         <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
-          <div className='max-w-2xl mx-auto min-h-[100vh] flex'>
+          <div className='max-w-2xl pt-12 mx-auto min-h-[100vh] flex'>
             {/* <div className='w-full min-h-full bg-red-700'></div> */}
-          <PostDisplay post={post} asscrollRef={asscrollRef} postId={postId as string} user={user} />
+          <PostDisplay post={post} asscrollRef={asscrollRef} postId={postId as string} user={user} navigate={navigate} />
           </div>
         </SmoothScroll>
       </div>
@@ -52,8 +47,16 @@ export default function PostPage({ loading, user, navigate, redirrectToSignIn, a
           Post not found
         </div>
       </div>
-      : <></>
+      : null
       }
     </>
   )
+
+  // ****************************
+
+  async function fetchPost() {
+    const post = await fetchPostById(postId as string, user as AuthUser)
+    setPost(post)
+    setFetching(false)
+  }
 }

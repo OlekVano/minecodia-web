@@ -1,11 +1,10 @@
 import Button from '../components/Button'
 import PanoramaBackground from '../components/PanoramaBackground'
 import SplashText from '../components/SplashText'
-import { NavigateFunction, useNavigate } from 'react-router-dom'
-
+import { NavigateFunction, } from 'react-router-dom'
 import SmoothScroll from '../components/SmoothScroll'
 import ASScroll from '@ashthornton/asscroll'
-import { MutableRefObject } from 'react'
+import { MutableRefObject, useEffect, useState } from 'react'
 
 type Props = {
   loading: boolean,
@@ -14,13 +13,18 @@ type Props = {
 }
 
 export default function HomePage({ loading, navigate, asscrollRef }: Props) {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(function makeVisible() {
+    if (!loading) setVisible(true)
+  }, [loading])
+
   return (
     <>
-      <PanoramaBackground bgImage='images/panorama-bg.jpg' />
       <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
-        <div className={`flex flex-col justify-evenly items-center transition-duration-opacity-1 min-h-screen delay-1000 ${loading ? 'opacity-0': ''}`}>
+        <div className={`flex flex-col justify-evenly items-center min-h-screen transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
           <div className='w-full sm:w-2/3 lg:w-1/2 relative select-none'>
-            <img src='/images/logo.png'></img>
+            <img alt='' src='/images/logo.png'></img>
             <div className='absolute bottom-1/4 right-0'>
               <SplashText />
             </div>

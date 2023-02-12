@@ -15,14 +15,96 @@ type Props = {
 }
 
 export default function CreatePostPage({ loading, user, navigate, asscrollRef }: Props) {
-  const [postTitle, setPostTitle] = useState('')
-  const [postContent, setPostContent] = useState('')
-  const [postImage, setPostImage] = useState('')
+  type Post = {
+    title: string;
+    content: string;
+    image: string;
+  }
+
+  const [visible, setVisible] = useState(false)
+
+  const [post, setPost] = useState<Post>({
+    title: '',
+    content: '',
+    image: ''
+  })
+
+  useEffect(resizeSmoothScroll, [post.image])
+
+  useEffect(function makeVisible() {
+    if (!loading) setVisible(true)
+  }, [loading])
 
   const maxTitleLen = 100
   const maxTextLen = 2500
-  const maxImageWidth = 1000
-  const maxImageHeight = 1000
+  const maxImageWidth = 2000
+  const maxImageHeight = 2000
+
+  return (
+    <>
+      <RequireSignInAndProfile loading={loading} user={user} />
+      <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
+        <div className={`flex flex-col items-center justify-evenly p-4 pt-16 max-w-2xl mx-auto gap-6 bg-black bg-opacity-50 min-h-screen transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
+          <h1 className='text-3xl'>Create a post</h1>
+          <div className='w-full flex flex-col items-center gap-2'>
+            <label htmlFor='title-input' className='text-xl'>Title</label>
+            <TextInput id='title-input' value={post.title} onChangeFunc={manageTitleInputChange} />
+          </div>
+          {
+            post.image ? <img src={post.image} onLoad={resizeSmoothScroll} /> : null
+          }
+          <div className='w-full flex flex-wrap justify-around items-center gap-2'>
+            <Button text='Upload Image' func={triggerImageUpload} />
+            <input id='image-upload' onChange={uploadImage} type='file' accept='image/*' className='hidden' />
+            {
+              post.image ? <Button text='Remove Image' func={removePostImage} />
+              : null
+            }
+          </div>
+          <div className='w-full flex flex-col items-center gap-2'>
+            <label htmlFor='text-input' className='text-xl'>Content</label>
+            <TextAreaInput id='text-input' value={post.content} onChangeFunc={manageTextInputChange} />
+          </div>
+          <Button text='Post' func={createPost} />
+        </div>
+      </SmoothScroll>
+    </>
+  )
+
+  // **************************************
+
+  function setPostImage(image: string) {
+    setPost(function  changePostImage(newPost: Post) {
+      newPost.image = image
+      return newPost
+    })
+  }
+
+  function setPostTitle(title: string) {
+    setPost(function  changePostTitle(newPost: Post) {
+      newPost.title = title
+      return newPost
+    })
+  }
+
+  function setPostContent(content: string) {
+    setPost(function  changePostTitle(newPost: Post) {
+      newPost.content = content
+      return newPost
+    })
+  }
+
+  function resizeSmoothScroll() {
+    asscrollRef.current?.resize()
+  }
+
+  function removePostImage() {
+    setPostImage('')
+  }
+
+  function triggerImageUpload() {
+    document.getElementById('image-upload')?.click()
+  }
 
   function manageTitleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const title = e.target.value
@@ -45,7 +127,7 @@ export default function CreatePostPage({ loading, user, navigate, asscrollRef }:
       const image = new Image()
       image.onload = () => {
         if (image.width > maxImageWidth || image.height > maxImageHeight) {
-          alert(`Bad image size: ${image.width}x${image.height}\Images must be at maximum ${maxImageWidth}x${maxImageHeight} pixels`)
+          alert(`Bad image size: ${image.width}x${image.height}\nImages must be at maximum ${maxImageWidth}x${maxImageHeight} pixels`)
         }
         else setPostImage(fileReader.result as string)
       }
@@ -54,17 +136,13 @@ export default function CreatePostPage({ loading, user, navigate, asscrollRef }:
     }
   }
 
-  async function post() {
-    if (postTitle.trim().length === 0) {
+  async function createPost() {
+    if (post.title.trim().length === 0) {
       alert('Title cannot be empty')
       return
     }
 
-    const json = JSON.stringify({
-      title: postTitle,
-      content: postContent,
-      image: postImage
-    })
+    const json = JSON.stringify(post)
 
     const res = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
       method: 'POST',
@@ -75,39 +153,4 @@ export default function CreatePostPage({ loading, user, navigate, asscrollRef }:
     if (res.status === 200) navigate(`/posts/${(await res.json()).id}`)
     else alert(`Error: ${res.statusText}`) 
   }
-
-  useEffect(() => {
-    asscrollRef.current?.resize()
-  }, [postImage])
-
-  return (
-    <>
-      <RequireSignInAndProfile loading={loading} user={user} />
-      <div className='fixed overflow-x-hidden h-screen w-full -z-50'>
-        <div className='h-screen block bg-cover bg-[url("../public/images/dirt-bg.webp")] bg-center'></div>
-      </div>
-      <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
-        <div className='flex flex-col items-center p-4 pt-16 max-w-2xl mx-auto gap-6'>
-          <h1 className='text-3xl'>Create a post</h1>
-          <div className='w-full flex flex-col items-center gap-2'>
-            <label htmlFor='title-input' className='text-xl'>Title</label>
-            <TextInput id='title-input' value={postTitle} onChangeFunc={manageTitleInputChange} />
-          </div>
-          <div className='w-full flex flex-wrap justify-around items-center gap-2'>
-            <Button text='Upload Image' func={() => document.getElementById('image-upload')?.click()} />
-            <input id='image-upload' onChange={uploadImage} type='file' className='hidden' />
-            {
-              postImage ? <Button text='Remove Image' func={() => setPostImage('')} />
-              : <></>
-            }
-          </div>
-          <div className='w-full flex flex-col items-center gap-2'>
-            <label htmlFor='text-input' className='text-xl'>Content</label>
-            <TextAreaInput id='text-input' value={postContent} onChangeFunc={manageTextInputChange} />
-          </div>
-          <Button text='Post' func={post} />
-        </div>
-      </SmoothScroll>
-    </>
-  )
 }
