@@ -1,7 +1,6 @@
 import ASScroll from '@ashthornton/asscroll'
 import { User } from 'firebase/auth'
 import { MutableRefObject, useState } from 'react'
-import { MutableRefObject, useState } from 'react'
 import { Post } from '../types'
 import Avatar from './Avatar'
 import Button2 from './Button2'
