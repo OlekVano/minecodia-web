@@ -35,3 +35,7 @@ export async function fetchPosts(user: AuthUser): Promise<(Post & {id: string})[
   const json = await res.json()
   return json
 }
+
+export function generateRandomString() {
+  return v4()
+}
