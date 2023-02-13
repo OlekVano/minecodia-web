@@ -13,9 +13,14 @@ export default function SkinCanvas({ containerId, nickname, skinImg }: Props) {
   const [canvasId] = useState(`skin-canvas-${generateRandomString()}`)
   const skin = useRef<SkinViewer | null>(null)
 
-  useEffect(addResizeEventHandler, [])
-  useEffect(returnUnmountFunction, [])
-  useEffect(initializeCanvas, [skinImg])
+  useEffect(() => {
+    window.addEventListener('resize', resizeSkin)
+    return function disposeSkin() {
+      skin.current?.dispose()
+    }
+  }, [])
+  
+  useEffect(updateSkin, [skinImg])
 
   useEffect(function changeNickname() {
     (skin.current as SkinViewer).nameTag = new NameTagObject(nickname, { textStyle: 'yellow' })
@@ -27,16 +32,11 @@ export default function SkinCanvas({ containerId, nickname, skinImg }: Props) {
 
   // ***********************************
 
-  function addResizeEventHandler() {
-    window.addEventListener('resize', resizeSkin)
-  }
-
-  function returnUnmountFunction() {
-    return disposeSkin
-  }
-
-  function disposeSkin() {
-    skin.current?.dispose()
+  function updateSkin() {
+    if (skin.current) skin.current.loadSkin(skinImg)
+    else { 
+      initializeCanvas()
+    }
   }
 
   function initializeCanvas() {
@@ -57,6 +57,12 @@ export default function SkinCanvas({ containerId, nickname, skinImg }: Props) {
     skin.current.nameTag = new NameTagObject(nickname, { textStyle: 'yellow' })
     skin.current.autoRotate = true
     skin.current.autoRotateSpeed = 2
+    
+    // Fixed a bug when the skin is invisible
+    setTimeout(() => {
+      skin.current?.loadSkin(skinImg)
+    }, 100)
+
   }
 
   function resizeSkin() {
