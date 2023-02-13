@@ -33,7 +33,6 @@ export default function ExplorePage({ loading, user, asscrollRef, navigate }: Pr
   return (
     <>
       <RequireSignInAndProfile loading={loading} user={user} />
-      <SmoothScroll loading={loading} asscrollRef={asscrollRef} >
         <div className={`max-w-2xl mx-auto min-h-[100vh] flex flex-col pt-12 transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
           {
             posts.map((post, i) => {
@@ -46,7 +45,6 @@ export default function ExplorePage({ loading, user, asscrollRef, navigate }: Pr
             })
           }
         </div>
-      </SmoothScroll>
     </>
   )
 }

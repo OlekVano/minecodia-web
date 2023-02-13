@@ -22,8 +22,7 @@ export default function SignInPage({ loading, user, navigate, asscrollRef }: Pro
   }, [loading])
 
   return (
-    <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
-    <div className={`w-full h-screen grid place-items-center transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
+    <div className={`w-full h-full grid place-items-center transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
       <div className={`m-auto gap-10 flex flex-wrap justify-center`}>
         {
           user ?
@@ -40,7 +39,6 @@ export default function SignInPage({ loading, user, navigate, asscrollRef }: Pro
         }
       </div>
     </div>
-    </SmoothScroll>
   )
 
   // **************************************

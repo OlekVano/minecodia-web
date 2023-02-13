@@ -43,8 +43,7 @@ export default function CreatePostPage({ loading, user, navigate, asscrollRef }:
   return (
     <>
       <RequireSignInAndProfile loading={loading} user={user} />
-      <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
-        <div className={`flex flex-col items-center justify-evenly p-4 pt-16 max-w-2xl mx-auto gap-6 bg-black bg-opacity-50 min-h-screen transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
+        <div className={`flex flex-col items-center justify-evenly p-4 pt-16 max-w-2xl mx-auto gap-6 bg-black bg-opacity-50 min-h-full transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
           <h1 className='text-3xl'>Create a post</h1>
           <div className='w-full flex flex-col items-center gap-2'>
             <label htmlFor='title-input' className='text-xl'>Title</label>
@@ -67,7 +66,6 @@ export default function CreatePostPage({ loading, user, navigate, asscrollRef }:
           </div>
           <Button text='Post' func={createPost} />
         </div>
-      </SmoothScroll>
     </>
   )
 

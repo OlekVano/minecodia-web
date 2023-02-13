@@ -34,15 +34,13 @@ export default function PostPage({ loading, user, navigate, asscrollRef }: Props
       {
       post ?
       <div className={`transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
-        <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
           <div className='max-w-2xl pt-12 mx-auto min-h-[100vh] flex'>
             {/* <div className='w-full min-h-full bg-red-700'></div> */}
           <PostDisplay post={post} asscrollRef={asscrollRef} postId={postId as string} user={user} navigate={navigate} />
           </div>
-        </SmoothScroll>
       </div>
       : !post && !fetching ?
-      <div className='grid place-items-center w-screen h-screen opacity-100'>
+      <div className='grid place-items-center w-screen h-full opacity-100'>
         <div className='z-10 text-3xl'>
           Post not found
         </div>

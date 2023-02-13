@@ -23,7 +23,7 @@ export default function LoadingScreen({ loading, setLoading }: Props) {
   useEffect(callAnimateLoading, [])
 
   return (
-    <div className={`bg-[#ef303f] z-[1000] absolute top-0 left-0 w-full h-screen select-none transition opacity duration-1000 pointer-events-none ${!visible ? 'opacity-0' : ''}`}>
+    <div className={`bg-[#ef303f] z-[1000] absolute top-0 left-0 w-full h-full select-none transition opacity duration-1000 pointer-events-none ${!visible ? 'opacity-0' : ''}`}>
       <div className='w-full h-full flex flex-col justify-center items-center text-white '>
         <div className='text-7xl font-["mojangStudios"] uppercase text-center'>web dev</div>
         <div className='text-2xl font-["round"] tracking-[10px] uppercase font-black text-center'>studios</div>

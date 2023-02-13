@@ -58,12 +58,11 @@ export default function EditProfilePage({ loading, user, navigate, asscrollRef }
       {
         Object.keys(state).length === 0 || loading ? null :
         <div className={`transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
-          <div className='fixed w-full h-[50vh] md:h-screen md:w-1/2 md:right-0 z-10'>
+          <div className='fixed w-full h-[50vh] md:h-full md:w-1/2 md:right-0 z-10'>
             <div className='w-full h-full pt-12'>
               <Avatar background={(state as UserProfile).background} skin={(state as UserProfile).skin} nickname={(state as UserProfile).nickname} />
             </div>
           </div>
-          <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
             <div className='p-5 md:w-1/2'>
               <div className='mt-[50vh] md:pt-12 md:mt-0 h-full'>
                 <div className='flex flex-col gap-4 items-center'>
@@ -86,7 +85,6 @@ export default function EditProfilePage({ loading, user, navigate, asscrollRef }
                 </div>
               </div>
             </div>
-          </SmoothScroll>
         </div>
       }
     </>

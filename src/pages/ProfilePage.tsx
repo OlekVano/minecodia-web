@@ -40,13 +40,12 @@ export default function ProfilePage({ loading, user, navigate, asscrollRef }: Pr
       {
       profile ?
       <div className={`transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
-        <div className='fixed w-full h-[50vh] md:h-screen md:w-1/2 md:right-0 z-10'>
+        <div className='fixed w-full h-[50vh] md:h-full md:w-1/2 md:right-0 z-10'>
           <div className='w-full h-full pt-12'>
             <Avatar background={profile.background} skin={profile.skin} nickname={profile.nickname} />
           </div>
         </div>
-        <SmoothScroll loading={loading} asscrollRef={asscrollRef}>
-          <div className='p-5 md:w-1/2 min-h-screen flex flex-col'>
+          <div className='p-5 md:w-1/2 min-h-full flex flex-col'>
             <div className='mt-[50vh] md:pt-12 md:mt-0 break-words whitespace-pre-line'>
               {profile.description.trim()}
             </div>
@@ -64,12 +63,11 @@ export default function ProfilePage({ loading, user, navigate, asscrollRef }: Pr
               }
             </div>
           </div>
-        </SmoothScroll>
       </div>
       : !profile && !fetching && user?.uid === userId ?
       <Navigate to='/edit-profile' />
       : !profile && !fetching ?
-      <div className='grid place-items-center w-screen h-screen opacity-100'>
+      <div className='grid place-items-center w-screen h-full opacity-100'>
         <div className='z-10 text-3xl'>
           User not found
         </div>

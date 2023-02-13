@@ -24,7 +24,7 @@ function App() {
   const asscrollRef = useRef<ASScroll>()
 
   return (
-    <div className='App w-full overflow-hidden max-h-screen'>
+    <div className='h-full'>
       <LoadingScreen loading={loading} setLoading={setLoading} />
       <Routes>
         <Route index element={<PanoramaBackground bgImage='/images/panorama-bg.jpg' />} />
