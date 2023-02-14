@@ -34,7 +34,7 @@ export default function PostPage({ loading, user, navigate, asscrollRef }: Props
       {
       post ?
       <div className={`transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
-          <div className='max-w-2xl pt-12 mx-auto min-h-[100vh] flex'>
+          <div className='max-w-2xl mx-auto min-h-[100vh] flex'>
             {/* <div className='w-full min-h-full bg-red-700'></div> */}
           <PostDisplay post={post} asscrollRef={asscrollRef} postId={postId as string} user={user} navigate={navigate} />
           </div>

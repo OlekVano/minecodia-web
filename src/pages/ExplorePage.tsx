@@ -33,7 +33,7 @@ export default function ExplorePage({ loading, user, asscrollRef, navigate }: Pr
   return (
     <>
       <RequireSignInAndProfile loading={loading} user={user} />
-        <div className={`max-w-2xl mx-auto min-h-[100vh] flex flex-col pt-12 transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
+        <div className={`max-w-2xl mx-auto flex flex-col transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
           {
             posts.map((post, i) => {
               return <div key={i}>

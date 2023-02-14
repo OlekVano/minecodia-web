@@ -64,7 +64,9 @@ export default function CreatePostPage({ loading, user, navigate, asscrollRef }:
             <label htmlFor='text-input' className='text-xl'>Content</label>
             <TextAreaInput id='text-input' value={post.content} onChangeFunc={manageTextInputChange} />
           </div>
-          <Button text='Post' func={createPost} />
+          <div className='w-full flex flex-wrap justify-around items-center'>
+            <Button text='Post' func={createPost} />
+          </div>
         </div>
     </>
   )

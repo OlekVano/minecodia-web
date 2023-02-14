@@ -39,14 +39,15 @@ export default function ProfilePage({ loading, user, navigate, asscrollRef }: Pr
       <RequireSignInAndProfile loading={loading} user={user} />
       {
       profile ?
-      <div className={`transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
-        <div className='fixed w-full h-[50vh] md:h-full md:w-1/2 md:right-0 z-10'>
-          <div className='w-full h-full pt-12'>
+      <div className={`h-full transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
+        <div className='fixed top-12 z-[-1] w-full h-[40vh] md:h-full md:w-1/2 md:right-0'>
+          <div className='w-full h-full'>
             <Avatar background={profile.background} skin={profile.skin} nickname={profile.nickname} />
           </div>
         </div>
-          <div className='p-5 md:w-1/2 min-h-full flex flex-col'>
-            <div className='mt-[50vh] md:pt-12 md:mt-0 break-words whitespace-pre-line'>
+        <div className='max-md:pt-[40vh] h-full md:w-1/2'>
+          <div className='flex flex-col p-5 h-full gap-y-8'>
+            <div className='md:mt-0 break-words whitespace-pre-line z-[-2]'>
               {profile.description.trim()}
             </div>
             <div className='w-full mt-auto flex flex-col items-center'>
@@ -56,13 +57,14 @@ export default function ProfilePage({ loading, user, navigate, asscrollRef }: Pr
               </div>
               {
                 user?.uid === userId ?
-                <div className='mt-8'>
+                <div className='py-5 w-full flex justify-center'>
                   <Button text='Edit Profile' func={() => navigate('/edit-profile')} />
                 </div>
                 : null
               }
             </div>
           </div>
+        </div>
       </div>
       : !profile && !fetching && user?.uid === userId ?
       <Navigate to='/edit-profile' />
