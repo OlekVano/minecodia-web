@@ -27,13 +27,13 @@ export default function SignInPage({ loading, user, navigate, asscrollRef }: Pro
         {
           user ?
           <>
-            <div className='w-full text-center  text-white' style={{wordSpacing: '3.5px'}}>You are signed in</div>
+            <div className='w-full text-center max-xs:text-sm text-white' style={{wordSpacing: '3.5px'}}>You are signed in</div>
             <Button text='Explore' func={function navigateToExplorePage() {navigate('/explore')}} />
             <Button text='Sign Out' func={function triggerSignOut() {signOut(auth)}} />
           </>
           :
           <>
-            <div className='w-full text-center  text-white' style={{wordSpacing: '3.5px'}}>Only authenticated users can use this application</div>
+            <div className='w-full text-center max-xs:text-sm text-white' style={{wordSpacing: '3.5px'}}>Only authenticated users can use this application</div>
             <Button text='Sign In' func={signIn} />
           </>
         }
