@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import HomePage from './pages/HomePage'
@@ -30,21 +30,25 @@ function App() {
         <Route index element={<PanoramaBackground bgImage='/images/panorama-bg.jpg' />} />
         <Route path='*' element={<DirtBackground />} />
       </Routes>
-      <Routes>
-        <Route index element={null} />
-        { /* Hiden the navbar on the /sign-in page */}
-        <Route path='/sign-in' element={null} />
-        <Route path='*' element={<NavBar user={user} navigate={navigate} />} />
-      </Routes>
-      <Routes>
-        <Route index element={<HomePage loading={loading} navigate={navigate} asscrollRef={asscrollRef} />} />
-        <Route path='/sign-in' element={<SignInPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
-        <Route path='/profile/:userId' element={<ProfilePage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
-        <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
-        <Route path='/create-post' element={<CreatePostPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
-        <Route path='/posts/:postId' element={<PostPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
-        <Route path='/explore' element={<ExplorePage loading={loading} user={user} asscrollRef={asscrollRef} navigate={navigate} />} />
-      </Routes>
+      <div className='h-full flex flex-col'>
+        <Routes>
+          <Route index element={null} />
+          { /* Hiden the navbar on the /sign-in page */}
+          <Route path='/sign-in' element={null} />
+          <Route path='*' element={<NavBar user={user} navigate={navigate} />} />
+        </Routes>
+        <div className='flex-grow overflow-y-auto overflow-x-hidden'>
+          <Routes>
+            <Route index element={<HomePage loading={loading} navigate={navigate} asscrollRef={asscrollRef} />} />
+            <Route path='/sign-in' element={<SignInPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
+            <Route path='/profile/:userId' element={<ProfilePage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
+            <Route path='/edit-profile' element={<EditProfilePage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
+            <Route path='/create-post' element={<CreatePostPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
+            <Route path='/posts/:postId' element={<PostPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
+            <Route path='/explore' element={<ExplorePage loading={loading} user={user} asscrollRef={asscrollRef} navigate={navigate} />} />
+          </Routes>
+        </div>
+      </div>
     </div>
   )
 }

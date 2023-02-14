@@ -12,7 +12,8 @@ export default function NavBar({ user, navigate }: Props) {
   const location = useLocation()
 
   return (
-    <div className='fixed w-full h-12 px-5 max-s:px-0 bg-[url(../public/images/plank.jpg)] bg-contain flex justify-items-stretch items-center z-50'>
+
+    <div className='w-full min-h-[48px] h-12 px-5 max-s:px-0 bg-[url(../public/images/plank.jpg)] bg-contain flex justify-items-stretch items-center z-50'>
       {/* <Button2 highlight={location.pathname === '/'} func={() => {navigate('/')}} text='Home' icon='/images/bookshelf.webp' /> */}
       <Button2 highlight={location.pathname === '/explore'} func={navigateToExplorePage} text='Explore' icon='/images/sword.webp' />
       <Button2 highlight={location.pathname === '/create-post'} func={navigateToCreatePostPage} text='Post' icon='/images/book-and-quill.webp' />
