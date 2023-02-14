@@ -22,8 +22,8 @@ export default function SignInPage({ loading, user, navigate, asscrollRef }: Pro
   }, [loading])
 
   return (
-    <div className={`w-full h-full grid place-items-center transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
-      <div className={`m-auto gap-10 flex flex-wrap justify-center`}>
+    <div className={`w-full h-full flex justify-center items-center transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
+      <div className={`gap-10 flex flex-wrap justify-center p-5 w-full`}>
         {
           user ?
           <>
