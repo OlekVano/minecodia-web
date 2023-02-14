@@ -13,7 +13,7 @@ export default function SplashText() {
     '99% bug free',
     'Minecraft???',
     'Fanmade',
-    'Wake up, coffee, code, faint, repeat'
+    // 'Wake up, coffee, code, faint, repeat'
   ]
 
   return (
