@@ -27,7 +27,7 @@ export default function HomePage({ loading, navigate, asscrollRef }: Props) {
           <SplashText />
         </div>
       </div>
-      <h1 className='max-xs:text-lg text-2xl uppercase text-center'>
+      <h1 className='max-xs:text-lg text-2xl uppercase text-center p-2'>
         The first social media platform designed for Minecraft fans!
       </h1>
       <div className='flex justify-center gap-x-16 gap-y-8 w-full flex-wrap p-5'>
