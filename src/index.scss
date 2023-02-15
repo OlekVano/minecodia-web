@@ -13,21 +13,21 @@ body {
   color: white;
 }
 
-#scrollable-container::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 7px;
   background-color: transparent;
 }
 
-#scrollable-container::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: rgb(107, 107, 107);
   border-radius: 10px;
 }
 
-#scrollable-container::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background-color: rgb(145, 145, 145);
 }
 
-#scrollable-container::-webkit-scrollbar-thumb:active {
+::-webkit-scrollbar-thumb:active {
   background-color: rgb(184, 184, 184);
 }
 

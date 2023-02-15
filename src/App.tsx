@@ -37,7 +37,7 @@ function App() {
           <Route path='/sign-in' element={null} />
           <Route path='*' element={<NavBar user={user} navigate={navigate} />} />
         </Routes>
-        <div id='scrollable-container' className='flex-grow overflow-y-auto overflow-x-hidden'>
+        <div className='flex-grow overflow-y-auto overflow-x-hidden'>
           <Routes>
             <Route index element={<HomePage loading={loading} navigate={navigate} asscrollRef={asscrollRef} />} />
             <Route path='/sign-in' element={<SignInPage loading={loading} user={user} navigate={navigate} asscrollRef={asscrollRef} />} />
