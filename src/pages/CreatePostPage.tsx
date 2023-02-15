@@ -3,7 +3,6 @@ import { User } from 'firebase/auth'
 import { MutableRefObject, useEffect, useState } from 'react'
 import Button from '../components/Button'
 import RequireSignInAndProfile from '../components/RequireSignInAndProfile'
-import SmoothScroll from '../components/SmoothScroll'
 import TextAreaInput from '../components/TextAreaInput'
 import TextInput from '../components/TextInput'
 
@@ -50,7 +49,7 @@ export default function CreatePostPage({ loading, user, navigate, asscrollRef }:
             <TextInput id='title-input' value={post.title} onChangeFunc={manageTitleInputChange} />
           </div>
           {
-            post.image ? <img src={post.image} onLoad={resizeSmoothScroll} /> : null
+            post.image ? <img src={post.image} alt='' onLoad={resizeSmoothScroll} /> : null
           }
           <div className='w-full flex flex-wrap justify-around items-center gap-2'>
             <Button text='Upload Image' func={triggerImageUpload} />

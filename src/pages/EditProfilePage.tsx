@@ -1,4 +1,3 @@
-import SmoothScroll from '../components/SmoothScroll'
 import { User as AuthUser } from 'firebase/auth'
 import { NavigateFunction } from 'react-router-dom'
 import Avatar from '../components/Avatar'

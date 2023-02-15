@@ -3,7 +3,6 @@ import { User } from 'firebase/auth'
 import { MutableRefObject, useEffect, useState } from 'react'
 import PostDisplay from '../components/PostDisplay'
 import RequireSignInAndProfile from '../components/RequireSignInAndProfile'
-import SmoothScroll from '../components/SmoothScroll'
 import { Post } from '../types'
 import { fetchPosts } from '../utils'
 

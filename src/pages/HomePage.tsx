@@ -1,8 +1,6 @@
 import Button from '../components/Button'
-import PanoramaBackground from '../components/PanoramaBackground'
 import SplashText from '../components/SplashText'
 import { NavigateFunction, } from 'react-router-dom'
-import SmoothScroll from '../components/SmoothScroll'
 import ASScroll from '@ashthornton/asscroll'
 import { MutableRefObject, useEffect, useState } from 'react'
 

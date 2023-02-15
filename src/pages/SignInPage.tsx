@@ -4,7 +4,6 @@ import { GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/aut
 import { NavigateFunction } from 'react-router-dom'
 import { fetchUserById } from '../utils'
 import { MutableRefObject, useEffect, useState } from 'react'
-import SmoothScroll from '../components/SmoothScroll'
 import ASScroll from '@ashthornton/asscroll'
 
 type Props = {

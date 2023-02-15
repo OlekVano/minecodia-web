@@ -3,7 +3,6 @@ import { NavigateFunction, useParams } from 'react-router-dom'
 import { Post } from '../types'
 import { User as AuthUser } from 'firebase/auth'
 import { fetchPostById } from '../utils'
-import SmoothScroll from '../components/SmoothScroll'
 import ASScroll from '@ashthornton/asscroll'
 import PostDisplay from '../components/PostDisplay'
 

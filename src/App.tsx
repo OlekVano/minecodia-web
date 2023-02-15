@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import HomePage from './pages/HomePage'
