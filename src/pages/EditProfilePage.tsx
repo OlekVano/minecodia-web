@@ -26,8 +26,6 @@ export default function EditProfilePage({ loading, user, navigate, asscrollRef }
 
   const maxNicknameLen = 15
   const maxDescriptionLen = 2500
-  // const maxImageWidth = 1000
-  // const maxImageHeight = 1000
 
   useEffect(function makeVisible() {
     if (loading || skins.length === 0 || backgrounds.length === 0 || Object.keys(state).length === 0) return
@@ -58,18 +56,18 @@ export default function EditProfilePage({ loading, user, navigate, asscrollRef }
       {
         Object.keys(state).length === 0 || loading ? null :
         <div className={`h-full transition opacity duration-1000 ${!visible ? 'opacity-0' : ''}`}>
-          <div className='fixed top-12 z-[-1] w-full h-[40vh] md:h-full md:w-1/2 md:right-0'>
+          <div className='fixed top-12 w-full h-[40vh] md:h-full md:w-1/2 md:right-0'>
             <div className='w-full h-full'>
               <Avatar background={(state as UserProfile).background} skin={(state as UserProfile).skin} nickname={(state as UserProfile).nickname} />
             </div>
           </div>
             <div className='max-md:pt-[40vh] h-full md:w-1/2'>
               <div className='flex flex-col gap-4 items-center p-5'>
-                <div className='z-[-2] w-full flex flex-col items-center gap-y-6'>
+                <div className='w-full flex flex-col items-center gap-y-6'>
                 <label htmlFor='nickname-input'>Nickname</label>
                 <TextInput id='nickname-input' value={(state as UserProfile).nickname} onChangeFunc={manageNicknameInputChange} />
                 </div>
-                <div className='gap-4 flex flex-wrap justify-center max-w-full z-[-2]'>
+                <div className='gap-4 flex flex-wrap justify-center max-w-full'>
                   <Button text='Change Skin' func={changeSkin} />
                   <Button text='Upload Skin' func={() => document.getElementById('skin-upload')?.click()} />
                   <input id='skin-upload' onChange={uploadSkin} type='file' className='hidden' />
@@ -77,7 +75,7 @@ export default function EditProfilePage({ loading, user, navigate, asscrollRef }
                   <Button text='Upload Background' func={() => document.getElementById('background-upload')?.click()} />
                   <input id='background-upload' onChange={uploadBackground} type='file' className='hidden' />
                 </div>
-                <div className='z-[-2] w-full gap-y-6 flex flex-col items-center'>
+                <div className='w-full gap-y-6 flex flex-col items-center'>
                   <label htmlFor='description-input'>Description</label>
                   <TextAreaInput id='description-input' onChangeFunc={manageDescriptionInputChange} value={(state as UserProfile).description} />
                   <Button text='Save' func={saveChanges} />
