@@ -101,6 +101,7 @@ export default function EditProfilePage({ loading, user, navigate, asscrollRef }
 
   function setStateProperty(property: keyof UserProfile, value: string): void {
     const newState: UserProfile = {...state} as UserProfile
+    // @ts-ignore
     newState[property] = value
     setState(newState)
   }

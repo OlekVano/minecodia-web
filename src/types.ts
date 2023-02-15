@@ -3,6 +3,8 @@ export type UserProfile = {
   description: string,
   skin: string,
   background: string
+  likes: number,
+  liked: boolean,
 }
 
 export type Post = {

@@ -24,6 +24,7 @@ export default function ProfilePage({ loading, user, navigate, asscrollRef }: Pr
   const [profile, setProfile] = useState<UserProfile | undefined>()
   const [fetching, setFetching] = useState(true)
   const [reported, setReported] = useState(false)
+  const [likes, setLikes] = useState(0)
   const [liked, setLiked] = useState(false)
 
   useEffect(function makeVisible() {
@@ -52,7 +53,7 @@ export default function ProfilePage({ loading, user, navigate, asscrollRef }: Pr
             </div>
             <div className='w-full mt-auto flex flex-col items-center'>
               <div className='flex w-full h-12'>
-                <Button2 highlight={liked} icon='/images/diamond.webp' text={`${888 + (liked ? 1 : 0)} Likes`} func={() => setLiked(!liked)} />
+                <Button2 highlight={liked} icon='/images/diamond.webp' text={`${likes} Likes`} func={handleLikeButton} />
                 <Button2 highlight={reported} icon='/images/barrier.webp' text={reported ? 'Reported' : 'Report'} func={() => setReported(!reported)} />
               </div>
               {
@@ -85,6 +86,23 @@ export default function ProfilePage({ loading, user, navigate, asscrollRef }: Pr
   async function fetchProfile() {
     const profile = await fetchUserById(userId as string, user as AuthUser)
     setProfile(profile)
+    if (profile) {
+      setLiked(profile.liked)
+      setLikes(profile.likes)
+    }
     setFetching(false)
+  }
+
+  async function handleLikeButton() {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/like/${userId}`, {
+      method: 'POST',
+      headers: new Headers({'Authorization': `Bearer ${await user?.getIdToken()}`, 'Content-Type': 'application/json'}),
+    })
+
+    if (res.status === 200) {
+      if (liked) setLikes(likes - 1)
+      else setLikes(likes + 1)
+      setLiked(!liked)
+    }
   }
 }
